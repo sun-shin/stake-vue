@@ -31,6 +31,9 @@ export default {
     loggedIn: function() {
       return localStorage.getItem("jwt");
     },
+    getUserId: function() {
+      return localStorage.getItem("user_id");
+    },
   },
 };
 </script>
