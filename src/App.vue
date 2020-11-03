@@ -7,7 +7,7 @@
         <router-link to="/events/new">Create Event</router-link> |
       </span>
       <span v-if="loggedIn()">
-        <router-link to="/user/:id">MyAccount</router-link> |
+        <router-link :to="`/users/${getUserId()}`">My Account</router-link> |
       </span>
       <span v-if="!loggedIn()">
         <router-link to="/signup">Signup</router-link> |

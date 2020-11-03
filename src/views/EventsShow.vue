@@ -2,7 +2,7 @@
   <div class="events-show">
     <h1>Event Info</h1>
 
-    <h2>Title: {{ event.title }}</h2>
+    <h2>{{ event.title }}</h2>
     <br />
     <p>Created By: {{ event.created_by }}</p>
     <br />
@@ -17,9 +17,11 @@
     <br />
     <p>Description: {{ event.description }}</p>
     <br />
-    <router-link :to="`/events/${event.id}/edit`">Edit</router-link>
-    <p>{{ $parent.getUserId() }}</p>
-    <!-- <p>{{ event.user }}</p> -->
+    <router-link
+      v-if="event.user_id == $parent.getUserId()"
+      :to="`/events/${event.id}/edit`"
+      >Edit</router-link
+    >
   </div>
 </template>
 

@@ -19,6 +19,10 @@
         <input type="text" class="form-control" v-model="eventStart" />
       </div>
       <div class="form-group">
+        <label>Duration:</label>
+        <input type="text" class="form-control" v-model="duration" />
+      </div>
+      <div class="form-group">
         <label>Address:</label>
         <input type="text" class="form-control" v-model="address" />
       </div>
@@ -47,10 +51,12 @@ export default {
       title: "",
       createdBy: "",
       eventStart: "",
+      duration: "",
       address: "",
       // tags: "",
       attendeeLimit: "",
       description: "",
+      errors: [],
     };
   },
   methods: {
@@ -59,6 +65,7 @@ export default {
         title: this.title,
         created_by: this.createdBy,
         event_start: this.eventStart,
+        duration: this.duration,
         address: this.address,
         // tags: this.tags,
         attendee_limit: this.attendeeLimit,

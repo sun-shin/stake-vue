@@ -5,6 +5,7 @@ import EventsIndex from "../views/EventsIndex.vue";
 import EventsNew from "../views/EventsNew.vue";
 import EventsEdit from "../views/EventsEdit.vue";
 import EventsShow from "../views/EventsShow.vue";
+import UsersShow from "../views/UsersShow.vue";
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
@@ -30,6 +31,11 @@ const routes = [
     path: "/logout",
     name: "logout",
     component: Logout,
+  },
+  {
+    path: "/users/:id/",
+    name: "users-show",
+    component: UsersShow,
   },
   {
     path: "/events",

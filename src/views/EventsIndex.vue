@@ -1,7 +1,7 @@
 <template>
   <div class="events-index">
     <div v-for="event in events">
-      <h2>Title: {{ event.title }}</h2>
+      <h2>{{ event.title }}</h2>
       <p>Event ID: {{ event.id }}</p>
       <p>Created By: {{ event.created_by }}</p>
       <p>Event Start: {{ event.event_start }}</p>
