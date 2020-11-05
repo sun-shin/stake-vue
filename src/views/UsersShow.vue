@@ -3,16 +3,17 @@
     <h1>My Account</h1>
 
     <!-- <img src="" alt="" /> -->
-    <h2>{{ user.first_name }}</h2>
+    <h2>{{ user.first_name + ` ${user.last_name}` }}</h2>
+    <img :src="user.image" />
     <br />
     <p>Email: {{ user.email }}</p>
     <br />
     <p>Phone Number: {{ user.phone_number }}</p>
     <br />
-    <!-- <p>Events: {{ user.events }}</p>
+    <p>Events: {{ user.events }}</p>
     <br />
     <p>Attending Events: {{ user.attending_events }}</p>
-    <br /> -->
+    <br />
   </div>
 </template>
 
