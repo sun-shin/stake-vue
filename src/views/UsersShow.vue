@@ -14,6 +14,11 @@
     <br />
     <p>Attending Events: {{ user.attending_events }}</p>
     <br />
+    <router-link
+      v-if="user.id == $parent.getUserId()"
+      :to="`/users/${user.id}/edit`"
+      >Edit</router-link
+    >
   </div>
 </template>
 
