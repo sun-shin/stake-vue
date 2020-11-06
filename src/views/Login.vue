@@ -34,8 +34,9 @@ export default {
       var params = {
         email: this.email,
         password: this.password,
-        // user_id: this.$parent.getUserId(),
+        user_id: this.$parent.getUserId(),
       };
+
       axios
         .post("/api/sessions", params)
         .then((response) => {
@@ -43,7 +44,7 @@ export default {
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("user_id", response.data.user_id);
-          this.$router.push("/");
+          this.$router.push(`/users/${this.$parent.getUserId()}`);
         })
         .catch((error) => {
           this.errors = ["Invalid email or password."];

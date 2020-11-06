@@ -6,11 +6,16 @@
     <div>
       Search Volunteer Events: <input type="text" v-model="eventSearch" />
     </div>
-    <div v-for="event in filterBy(events, eventSearch, 'title', 'description')">
+    <div
+      v-for="event in orderBy(
+        filterBy(events, eventSearch, 'title', 'description'),
+        'event_start'
+      )"
+    >
       <router-link :to="`/events/${event.id}`">
         <h2>{{ event.title }}</h2>
       </router-link>
-      <button v-on:click="createEventUsers()">Add</button>
+      <button v-on:click="createEventUsers(event.id)">Add</button>
       <p>Event ID: {{ event.id }}</p>
       <p>{{ $parent.getUserId() }}</p>
       <p>Created By: {{ event.created_by }}</p>
@@ -37,7 +42,7 @@ export default {
       events: [],
       errors: [],
       eventSearch: "",
-      // eventId: this.event.id,
+      eventAttendMsg: "",
     };
   },
   created: function() {
@@ -51,23 +56,24 @@ export default {
       });
     },
     dateCreated: function(date) {
-      return moment().format("LL");
+      return moment(date).format("LL");
     },
-    // createEventUsers: function() {
-    //   var params = {
-    //     user_id: this.$parent.getUserId(),
-    //     // event_id: this.eventId,
-    //   };
-    //   axios
-    //     .post("/api/event_users")
-    //     .then((response) => {
-    //       console.log("You are now attending this event", response.data);
-    //       this.$router.push("/event_users");
-    //     })
-    //     .catch((error) => {
-    //       this.errors = error.response.data.errors;
-    //     });
-    // },
+
+    createEventUsers: function(eventId) {
+      var params = {
+        event_id: eventId,
+      };
+      axios
+        .post("/api/event_users", params)
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push("/event_users");
+          this.eventAttendMsg = "You are now attending this event";
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
   },
 };
 </script>
