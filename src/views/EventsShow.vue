@@ -4,6 +4,7 @@
 
     <h2>{{ event.title }}</h2>
     <br />
+    <button v-on:click="createEventUsers()">Add</button>
     <p>Created By: {{ event.created_by }}</p>
     <br />
     <p>Event Start: {{ event.event_start }}</p>
@@ -15,6 +16,7 @@
     <br />
     <p>Openings: {{ event.openings }}</p>
     <br />
+    <p>Attendees: {{ event.attendees }}</p>
     <p>Description: {{ event.description }}</p>
     <br />
     <router-link
@@ -42,6 +44,22 @@ export default {
       this.event = response.data;
     });
   },
-  methods: {},
+  methods: {
+    createEventUsers: function() {
+      var params = {
+        user_id: this.$parent.getUserId(),
+        // event_id: this.event.id,
+      };
+      axios
+        .post("/api/event_users")
+        .then((response) => {
+          console.log("You are now attending this event", response.data);
+          this.$router.push("/event_users");
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
+    },
+  },
 };
 </script>

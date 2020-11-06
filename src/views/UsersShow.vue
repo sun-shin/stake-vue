@@ -6,13 +6,16 @@
     <h2>{{ user.first_name + ` ${user.last_name}` }}</h2>
     <img :src="user.image" />
     <br />
+    <h3>Contact Information</h3>
     <p>Email: {{ user.email }}</p>
     <br />
     <p>Phone Number: {{ user.phone_number }}</p>
     <br />
-    <p>Events: {{ user.events }}</p>
+    <h3>My Events</h3>
+    <p>{{ user.events }}</p>
     <br />
-    <p>Attending Events: {{ user.attending_events }}</p>
+    <h3>Attending Events</h3>
+    <p>{{ user.attending_events }}</p>
     <br />
     <router-link
       v-if="user.id == $parent.getUserId()"

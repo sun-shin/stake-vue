@@ -1,8 +1,13 @@
 <template>
   <div class="events-index">
+    <ul>
+      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+    </ul>
     <div v-for="event in events">
       <h2>{{ event.title }}</h2>
+      <button v-on:click="createEventUsers()">Add</button>
       <p>Event ID: {{ event.id }}</p>
+      <p>{{ $parent.getUserId() }}</p>
       <p>Created By: {{ event.created_by }}</p>
       <p>Event Start: {{ event.event_start }}</p>
       <p>Duration: {{ event.duration }}</p>
@@ -22,6 +27,8 @@ export default {
   data: function() {
     return {
       events: [],
+      errors: [],
+      // eventId: this.event.id,
     };
   },
   created: function() {
@@ -34,6 +41,21 @@ export default {
         this.events = response.data;
       });
     },
+    // createEventUsers: function() {
+    //   var params = {
+    //     user_id: this.$parent.getUserId(),
+    //     // event_id: this.eventId,
+    //   };
+    //   axios
+    //     .post("/api/event_users")
+    //     .then((response) => {
+    //       console.log("You are now attending this event", response.data);
+    //       this.$router.push("/event_users");
+    //     })
+    //     .catch((error) => {
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
   },
 };
 </script>
