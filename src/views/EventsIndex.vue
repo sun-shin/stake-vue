@@ -7,7 +7,9 @@
       Search Volunteer Events: <input type="text" v-model="eventSearch" />
     </div>
     <div v-for="event in filterBy(events, eventSearch, 'title', 'description')">
-      <h2>{{ event.title }}</h2>
+      <router-link :to="`/events/${event.id}`">
+        <h2>{{ event.title }}</h2>
+      </router-link>
       <button v-on:click="createEventUsers()">Add</button>
       <p>Event ID: {{ event.id }}</p>
       <p>{{ $parent.getUserId() }}</p>
@@ -17,7 +19,7 @@
       <p>Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
       <p>{{ event.tags }}</p>
-      <router-link :to="`/events/${event.id}`">More Info</router-link>
+      <p>Date Created: {{ dateCreated(event.created_at) }}</p>
     </div>
   </div>
 </template>
@@ -27,6 +29,7 @@
 <script>
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
+import moment from "moment";
 export default {
   mixins: [Vue2Filters.mixin],
   data: function() {
@@ -46,6 +49,9 @@ export default {
         console.log(response.data);
         this.events = response.data;
       });
+    },
+    dateCreated: function(date) {
+      return moment().format("LL");
     },
     // createEventUsers: function() {
     //   var params = {
