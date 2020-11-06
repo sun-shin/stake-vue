@@ -3,7 +3,10 @@
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
-    <div v-for="event in events">
+    <div>
+      Search Volunteer Events: <input type="text" v-model="eventSearch" />
+    </div>
+    <div v-for="event in filterBy(events, eventSearch, 'title', 'description')">
       <h2>{{ event.title }}</h2>
       <button v-on:click="createEventUsers()">Add</button>
       <p>Event ID: {{ event.id }}</p>
@@ -23,11 +26,14 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function() {
     return {
       events: [],
       errors: [],
+      eventSearch: "",
       // eventId: this.event.id,
     };
   },

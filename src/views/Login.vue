@@ -34,6 +34,7 @@ export default {
       var params = {
         email: this.email,
         password: this.password,
+        // user_id: this.$parent.getUserId(),
       };
       axios
         .post("/api/sessions", params)

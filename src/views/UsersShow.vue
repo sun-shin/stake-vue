@@ -2,7 +2,6 @@
   <div class="users-show">
     <h1>My Account</h1>
 
-    <!-- <img src="" alt="" /> -->
     <h2>{{ user.first_name + ` ${user.last_name}` }}</h2>
     <img :src="user.image" />
     <br />

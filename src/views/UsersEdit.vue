@@ -25,6 +25,14 @@
         <label>Image:</label>
         <input type="text" class="form-control" v-model="user.image" />
       </div>
+      <!-- <div class="form-group">
+        <label>Current Password:</label>
+        <input type="text" class="form-control" v-model="user.password" />
+      </div> -->
+      <div class="form-group">
+        <label>New Password:</label>
+        <input type="text" class="form-control" v-model="user.password" />
+      </div>
       <input type="submit" class="btn btn-primary" value="Update" />
     </form>
     <button class="btn btn-danger" v-on:click="destroyMovie()">Delete</button>
@@ -56,6 +64,7 @@ export default {
         image: this.user.image,
         email: this.user.email,
         phone_number: this.user.phone_number,
+        password: this.user.password,
       };
       axios
         .patch(`/api/users/${this.user.id}`, params)
