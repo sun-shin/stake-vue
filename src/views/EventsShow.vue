@@ -15,6 +15,8 @@
     <br />
     <p>Address: {{ event.address }}</p>
     <br />
+    <p>Description: {{ event.description }}</p>
+    <br />
     <p>Attendee Limit: {{ event.attendee_limit }}</p>
     <br />
     <p>Openings: {{ event.openings }}</p>
@@ -23,14 +25,20 @@
     <div v-for="attendee in event.attendees">
       <p>Name: {{ attendee.first_name }} {{ attendee.last_name }}</p>
     </div>
-
-    <p>Description: {{ event.description }}</p>
     <br />
     <router-link
       v-if="event.user_id == $parent.getUserId()"
       :to="`/events/${event.id}/edit`"
       >Edit</router-link
     >
+    <br />
+    <button
+      class="btn btn-danger"
+      v-if="event.user_id == $parent.getUserId()"
+      v-on:click="destroyEvent()"
+    >
+      Delete Event
+    </button>
   </div>
 </template>
 
@@ -88,7 +96,13 @@ export default {
       });
     },
     formatDate: function(date) {
-      return moment(date).format();
+      return moment(date).format("LL");
+    },
+    destroyEvent: function() {
+      axios.delete(`/api/events/${this.event.id}`).then((response) => {
+        console.log("Success", response.data);
+        this.$router.push("/events");
+      });
     },
   },
 };

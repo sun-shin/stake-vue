@@ -30,6 +30,20 @@
         <label>Description:</label>
         <input type="text" class="form-control" v-model="description" />
       </div>
+
+      <div v-for="tag in tags">
+        <input
+          type="checkbox"
+          :id="tag.id"
+          :value="tag.id"
+          v-model="checkedTagIds"
+        />
+        <label :for="tag.id">{{ tag.name }}</label>
+      </div>
+
+      <br />
+      <span>Checked tag ids: {{ checkedTagIds }}</span>
+
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
   </div>
@@ -48,7 +62,15 @@ export default {
       attendeeLimit: "",
       description: "",
       errors: [],
+      tags: [],
+      checkedTagIds: [],
     };
+  },
+  created: function() {
+    axios.get("/api/tags").then((response) => {
+      this.tags = response.data;
+      console.log(response.data);
+    });
   },
   methods: {
     createEvent: function() {
@@ -60,6 +82,7 @@ export default {
         address: this.address,
         attendee_limit: this.attendeeLimit,
         description: this.description,
+        tag_ids: this.checkedTagIds,
       };
       axios
         .post("/api/events", params)

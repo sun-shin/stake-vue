@@ -15,10 +15,10 @@
       <router-link :to="`/events/${event.id}`">
         <h2>{{ event.title }}</h2>
       </router-link>
-      <button v-on:click="createEventUsers(event.id)">Add</button>
+      <button v-on:click="createEventUsers(event.id)">Attend</button>
       <p>Event ID: {{ event.id }}</p>
-      <p>{{ $parent.getUserId() }}</p>
-      <p>Created By: {{ event.created_by }}</p>
+      <!-- update backend view to return full name -->
+      <p>Created By: {{ event.user_id }}</p>
       <p>Event Start: {{ event.event_start }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
