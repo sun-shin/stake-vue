@@ -11,8 +11,8 @@
         <input type="text" class="form-control" v-model="title" />
       </div>
       <div class="form-group">
-        <label>Created By:</label>
-        <input type="text" class="form-control" v-model="createdBy" />
+        <label>Address:</label>
+        <input type="text" class="form-control" v-model="address" />
       </div>
       <div class="form-group">
         <label>Event Start:</label>
@@ -22,14 +22,6 @@
         <label>Duration:</label>
         <input type="text" class="form-control" v-model="duration" />
       </div>
-      <div class="form-group">
-        <label>Address:</label>
-        <input type="text" class="form-control" v-model="address" />
-      </div>
-      <!-- <div class="form-group">
-        <label>Tag(s):</label>
-        <input type="text" class="form-control" v-model="tags" />
-      </div> -->
       <div class="form-group">
         <label>Attendee Limit:</label>
         <input type="number" class="form-control" v-model="attendeeLimit" />
@@ -53,7 +45,6 @@ export default {
       eventStart: "",
       duration: "",
       address: "",
-      // tags: "",
       attendeeLimit: "",
       description: "",
       errors: [],
@@ -67,7 +58,6 @@ export default {
         event_start: this.eventStart,
         duration: this.duration,
         address: this.address,
-        // tags: this.tags,
         attendee_limit: this.attendeeLimit,
         description: this.description,
       };

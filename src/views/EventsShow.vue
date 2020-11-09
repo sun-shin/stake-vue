@@ -4,20 +4,25 @@
 
     <h2>{{ event.title }}</h2>
     <br />
-    <button v-on:click="createEventUsers(event.id)">Add</button>
-    <p>Created By: {{ event.created_by }}</p>
+    <button v-if="event.attending" v-on:click="destroyEventUser()">
+      Unattend
+    </button>
+    <button v-else v-on:click="createEventUser()">Attend</button>
+
+    <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
     <br />
-    <p>Event Start: {{ event.event_start }}</p>
+    <p>Event Start: {{ formatDate(event.event_start) }}</p>
     <br />
     <p>Address: {{ event.address }}</p>
     <br />
-    <!-- <p>Tag(s): {{ event.tags }}</p><br> -->
     <p>Attendee Limit: {{ event.attendee_limit }}</p>
     <br />
     <p>Openings: {{ event.openings }}</p>
     <br />
     <h3>Attendees</h3>
-    <p>{{ event.attendees }}</p>
+    <div v-for="attendee in event.attendees">
+      <p>Name: {{ attendee.first_name }} {{ attendee.last_name }}</p>
+    </div>
 
     <p>Description: {{ event.description }}</p>
     <br />
@@ -33,6 +38,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data: function() {
     return {
@@ -47,18 +53,42 @@ export default {
     });
   },
   methods: {
-    createEventUsers: function(eventId) {
+    createEventUser: function() {
       var params = {
-        event_id: eventId,
+        event_id: this.event.id,
       };
       axios
         .post("/api/event_users", params)
         .then((response) => {
-          this.$router.push("/event_users");
+          // puts user into attendees array
+          this.event.attendees.push(response.data.user);
+          // changes attending to true so button says "unattend"
+          this.event.attending = true;
+          // decreases openings by one when the user attends
+          this.event.openings--;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    destroyEventUser: function() {
+      axios.delete(`/api/event_users/${this.event.id}`).then((response) => {
+        // changes attending to false so button says "attend" again
+        this.event.attending = false;
+        // finds the user in the event attendees array
+        var user = this.event.attendees.find(
+          (user) => user.id === response.data.user_id
+        );
+        // find the index of above user in attendees array
+        var index = this.event.attendees.indexOf(user);
+        // removes attendee from array based on index
+        this.event.attendees.splice(index, 1);
+        // increases openings by one when the user unattends
+        this.event.openings++;
+      });
+    },
+    formatDate: function(date) {
+      return moment(date).format();
     },
   },
 };

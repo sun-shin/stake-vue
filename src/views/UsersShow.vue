@@ -1,6 +1,6 @@
 <template>
   <div class="users-show">
-    <h1>{{ user.first_name + ` ${user.last_name}` }}</h1>
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
     <img :src="user.image" />
     <br />
     <h2>Contact Information</h2>
@@ -22,6 +22,7 @@
       <p>{{ event.event_start }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>{{ event.tags }}</p>
+      <p>Future Event?: {{ futureEvent(event.event_start) }}</p>
     </div>
 
     <h2>My Events</h2>
@@ -40,6 +41,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data: function() {
     return {
@@ -53,6 +55,12 @@ export default {
       this.user = response.data;
     });
   },
-  methods: {},
+  methods: {
+    futureEvent: function(event_date) {
+      var today = moment().format();
+      var eventStart = moment(event_date).format();
+      return today < eventStart;
+    },
+  },
 };
 </script>

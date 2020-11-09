@@ -35,8 +35,12 @@
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
 import moment from "moment";
+import Multiselect from "vue-multiselect";
 export default {
   mixins: [Vue2Filters.mixin],
+  // components: {
+  //   Multiselect,
+  // },
   data: function() {
     return {
       events: [],
