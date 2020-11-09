@@ -42,7 +42,6 @@ export default {
       events: [],
       errors: [],
       eventSearch: "",
-      eventAttendMsg: "",
     };
   },
   created: function() {
@@ -66,9 +65,7 @@ export default {
       axios
         .post("/api/event_users", params)
         .then((response) => {
-          console.log(response.data);
           this.$router.push("/event_users");
-          this.eventAttendMsg = "You are now attending this event";
         })
         .catch((error) => {
           this.errors = error.response.data.errors;

@@ -63,6 +63,11 @@ const routes = [
     name: "events-show",
     component: EventsShow,
   },
+  // {
+  //   path: "/events/:id",
+  //   name: "events-show",
+  //   component: UserEventsIndex,
+  // },
 ];
 
 const router = new VueRouter({

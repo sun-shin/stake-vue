@@ -16,7 +16,9 @@
     <br />
     <p>Openings: {{ event.openings }}</p>
     <br />
-    <p>Attendees: {{ event.attendees }}</p>
+    <h3>Attendees</h3>
+    <p>{{ event.attendees }}</p>
+
     <p>Description: {{ event.description }}</p>
     <br />
     <router-link
@@ -35,7 +37,6 @@ export default {
   data: function() {
     return {
       event: {},
-      eventAttendMsg: "",
     };
   },
   created: function() {
@@ -53,8 +54,6 @@ export default {
       axios
         .post("/api/event_users", params)
         .then((response) => {
-          console.log(response.data);
-          this.eventAttendMsg = "You are now attending this event";
           this.$router.push("/event_users");
         })
         .catch((error) => {

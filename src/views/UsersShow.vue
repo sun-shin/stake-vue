@@ -1,26 +1,38 @@
 <template>
   <div class="users-show">
-    <h1>My Account</h1>
-
-    <h2>{{ user.first_name + ` ${user.last_name}` }}</h2>
+    <h1>{{ user.first_name + ` ${user.last_name}` }}</h1>
     <img :src="user.image" />
     <br />
-    <h3>Contact Information</h3>
+    <h2>Contact Information</h2>
     <p>Email: {{ user.email }}</p>
-    <br />
+
     <p>Phone Number: {{ user.phone_number }}</p>
-    <br />
-    <h3>My Events</h3>
-    <p>{{ user.events }}</p>
-    <br />
-    <h3>Attending Events</h3>
-    <p>{{ user.attending_events }}</p>
-    <br />
+
     <router-link
       v-if="user.id == $parent.getUserId()"
       :to="`/users/${user.id}/edit`"
-      >Edit</router-link
-    >
+      >Edit </router-link
+    ><br />
+
+    <h2>Attending Events</h2>
+    <div v-for="event in user.attending_events">
+      <router-link :to="`/events/${event.id}`">
+        <h3>{{ event.title }}</h3>
+      </router-link>
+      <p>{{ event.event_start }}</p>
+      <p>Duration: {{ event.duration }}</p>
+      <p>{{ event.tags }}</p>
+    </div>
+
+    <h2>My Events</h2>
+    <div v-for="event in user.events">
+      <router-link :to="`/events/${event.id}`">
+        <h3>{{ event.title }}</h3>
+      </router-link>
+      <p>{{ event.event_start }}</p>
+      <p>{{ event.duration }}</p>
+    </div>
+    <br />
   </div>
 </template>
 
