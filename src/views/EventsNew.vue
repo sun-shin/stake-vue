@@ -15,8 +15,15 @@
         <input type="text" class="form-control" v-model="address" />
       </div>
       <div class="form-group">
-        <label>Event Start:</label>
-        <input type="text" class="form-control" v-model="eventStart" />
+        <label for="event-time">Event Start:</label>
+        <input
+          type="datetime-local"
+          id="event-time"
+          min="2020-01-01T00:00"
+          max="2021-12-31T11:59"
+          class="form-control"
+          v-model="eventStart"
+        />
       </div>
       <div class="form-group">
         <label>Duration:</label>

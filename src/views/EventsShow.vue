@@ -36,13 +36,6 @@
       >Edit</router-link
     >
     <br />
-    <button
-      class="btn btn-danger"
-      v-if="event.user_id == $parent.getUserId()"
-      v-on:click="destroyEvent()"
-    >
-      Delete Event
-    </button>
   </div>
 </template>
 
@@ -100,7 +93,7 @@ export default {
       });
     },
     formatDate: function(date) {
-      return moment(date).format("LL");
+      return moment(date).format("LLL");
     },
     destroyEvent: function() {
       axios.delete(`/api/events/${this.event.id}`).then((response) => {

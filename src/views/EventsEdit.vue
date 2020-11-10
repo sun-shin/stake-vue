@@ -10,10 +10,17 @@
         <label>Title:</label>
         <input type="text" class="form-control" v-model="event.title" />
       </div>
-
+      <!-- <input type="hidden" id="timezone" name="timezone" value="00:00" /> -->
       <div class="form-group">
-        <label>Event Start:</label>
-        <input type="text" class="form-control" v-model="event.event_start" />
+        <label for="event-time">Event Start:</label>
+        <input
+          type="datetime-local"
+          id="event-time"
+          min="2020-01-01T00:00"
+          max="2021-12-31T11:59"
+          class="form-control"
+          v-model="formattedEventStart"
+        />
       </div>
       <div class="form-group">
         <label>Duration:</label>
@@ -50,12 +57,19 @@
       <span>Checked tag ids: {{ checkedTagIds }}</span>
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
-    <button v-on:click="destroyEvent()">Delete Event</button>
+    <button
+      class="btn btn-danger"
+      v-if="event.user_id == $parent.getUserId()"
+      v-on:click="destroyEvent()"
+    >
+      Delete Event
+    </button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data: function() {
     return {
@@ -63,12 +77,16 @@ export default {
       errors: [],
       tags: [],
       checkedTagIds: [],
+      formattedEventStart: "",
     };
   },
   created: function() {
     axios.get(`/api/events/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.event = response.data;
+      this.formattedEventStart = this.formatDate(
+        this.event.event_start
+      ).substring(0, 19);
       this.checkedTagIds = this.event.tags.map((tag) => tag.id);
     });
     axios.get("/api/tags").then((response) => {
@@ -80,7 +98,7 @@ export default {
     updateEvent: function() {
       var params = {
         title: this.event.title,
-        event_start: this.event.event_start,
+        event_start: this.formatDate(this.formattedEventStart),
         address: this.event.address,
         attendee_limit: this.event.attendee_limit,
         duration: this.event.duration,
@@ -98,11 +116,19 @@ export default {
     },
     destroyEvent: function() {
       if (confirm("Are you sure you want to delete this event?")) {
-        axios.delete(`/api/events/${this.event.id}`).then((response) => {
-          console.log("Event Successfully Deleted", response.data);
-          this.$router.push("/events");
-        });
+        axios
+          .delete(`/api/events/${this.event.id}`)
+          .then((response) => {
+            console.log("Event Successfully Deleted", response.data);
+            this.$router.push("/events");
+          })
+          .catch((error) => {
+            this.errors = error.response.data.errors;
+          });
       }
+    },
+    formatDate: function(date) {
+      return moment(date).format();
     },
   },
 };

@@ -96,7 +96,7 @@ export default {
     //   });
     // },
     formatDate: function(date) {
-      return moment(date).format("LL");
+      return moment(date).format("LLL");
     },
     futureEvent: function(eventDate) {
       var today = moment().format();

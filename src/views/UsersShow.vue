@@ -29,10 +29,7 @@
     </div>
 
     <h2>My Events</h2>
-    <div
-      v-for="event in user.events"
-      v-if="futureEvent(event.event_start) == true"
-    >
+    <div v-for="event in user.events">
       <router-link :to="`/events/${event.id}`">
         <h3>{{ event.title }}</h3>
       </router-link>
