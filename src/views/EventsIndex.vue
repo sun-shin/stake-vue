@@ -15,14 +15,19 @@
       <router-link :to="`/events/${event.id}`">
         <h2>{{ event.title }}</h2>
       </router-link>
-      <button v-if="event.attending" v-on:click="destroyEventUser(event)">
+      Tags:
+      <div v-for="tag in event.tags">
+        <p>{{ tag.name }}</p>
+      </div>
+      <br />
+      <!-- <button v-if="event.attending" v-on:click="destroyEventUser(event)">
         Unattend
-      </button>
+      </button> -->
       <button v-on:click="createEventUsers(event)">Attend</button>
       <p>Event ID: {{ event.id }}</p>
       <!-- update backend view to return full name -->
       <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
-      <p>Event Start: {{ event.event_start }}</p>
+      <p>Event Start: {{ formatDate(event.event_start) }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
@@ -90,6 +95,9 @@ export default {
     //     this.event.openings++;
     //   });
     // },
+    formatDate: function(date) {
+      return moment(date).format("LL");
+    },
   },
 };
 </script>

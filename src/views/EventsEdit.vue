@@ -16,6 +16,10 @@
         <input type="text" class="form-control" v-model="event.event_start" />
       </div>
       <div class="form-group">
+        <label>Duration:</label>
+        <input type="number" class="form-control" v-model="event.duration" />
+      </div>
+      <div class="form-group">
         <label>Address:</label>
         <input type="text" class="form-control" v-model="event.address" />
       </div>
@@ -79,6 +83,7 @@ export default {
         event_start: this.event.event_start,
         address: this.event.address,
         attendee_limit: this.event.attendee_limit,
+        duration: this.event.duration,
         description: this.event.description,
         tag_ids: this.checkedTagIds,
       };
