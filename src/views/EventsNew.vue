@@ -42,7 +42,8 @@
       </div>
 
       <br />
-      <span>Checked tag ids: {{ checkedTagIds }}</span>
+      <span>Checked tag ids: {{ checkedTagIds }}</span
+      ><br />
 
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>

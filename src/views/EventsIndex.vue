@@ -11,6 +11,7 @@
         filterBy(events, eventSearch, 'title', 'description'),
         'event_start'
       )"
+      v-if="futureEvent(event.event_start) == true"
     >
       <router-link :to="`/events/${event.id}`">
         <h2>{{ event.title }}</h2>
@@ -31,7 +32,6 @@
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
-      <p>{{ event.tags }}</p>
       <p>Date Created: {{ dateCreated(event.created_at) }}</p>
     </div>
   </div>
@@ -97,6 +97,11 @@ export default {
     // },
     formatDate: function(date) {
       return moment(date).format("LL");
+    },
+    futureEvent: function(eventDate) {
+      var today = moment().format();
+      var eventStart = moment(eventDate).format();
+      return today < eventStart;
     },
   },
 };

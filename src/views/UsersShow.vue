@@ -15,23 +15,29 @@
     ><br />
 
     <h2>Attending Events</h2>
-    <div v-for="event in user.attending_events">
+    <div
+      v-for="event in user.attending_events"
+      v-if="futureEvent(event.event_start) == true"
+    >
       <router-link :to="`/events/${event.id}`">
         <h3>{{ event.title }}</h3>
       </router-link>
-      <p>{{ event.event_start }}</p>
+      <p>Event Start: {{ formatDate(event.event_start) }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>{{ event.tags }}</p>
       <p>Future Event?: {{ futureEvent(event.event_start) }}</p>
     </div>
 
     <h2>My Events</h2>
-    <div v-for="event in user.events">
+    <div
+      v-for="event in user.events"
+      v-if="futureEvent(event.event_start) == true"
+    >
       <router-link :to="`/events/${event.id}`">
         <h3>{{ event.title }}</h3>
       </router-link>
-      <p>{{ event.event_start }}</p>
-      <p>{{ event.duration }}</p>
+      <p>Event Start: {{ formatDate(event.event_start) }}</p>
+      <p>Duration: {{ event.duration }}</p>
     </div>
     <br />
   </div>
@@ -56,10 +62,13 @@ export default {
     });
   },
   methods: {
-    futureEvent: function(event_date) {
+    futureEvent: function(eventDate) {
       var today = moment().format();
-      var eventStart = moment(event_date).format();
+      var eventStart = moment(eventDate).format();
       return today < eventStart;
+    },
+    formatDate: function(date) {
+      return moment(date).format("LL");
     },
   },
 };
