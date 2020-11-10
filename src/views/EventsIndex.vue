@@ -15,10 +15,13 @@
       <router-link :to="`/events/${event.id}`">
         <h2>{{ event.title }}</h2>
       </router-link>
-      <button v-on:click="createEventUsers(event.id)">Attend</button>
+      <button v-if="event.attending" v-on:click="destroyEventUser(event)">
+        Unattend
+      </button>
+      <button v-on:click="createEventUsers(event)">Attend</button>
       <p>Event ID: {{ event.id }}</p>
       <!-- update backend view to return full name -->
-      <p>Created By: {{ event.user_id }}</p>
+      <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
       <p>Event Start: {{ event.event_start }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
@@ -35,12 +38,8 @@
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
 import moment from "moment";
-import Multiselect from "vue-multiselect";
 export default {
   mixins: [Vue2Filters.mixin],
-  // components: {
-  //   Multiselect,
-  // },
   data: function() {
     return {
       events: [],
@@ -53,28 +52,44 @@ export default {
   },
   methods: {
     indexEvents: function() {
-      axios.get("/api/events").then((response) => {
-        console.log(response.data);
-        this.events = response.data;
-      });
-    },
-    dateCreated: function(date) {
-      return moment(date).format("LL");
-    },
-
-    createEventUsers: function(eventId) {
-      var params = {
-        event_id: eventId,
-      };
       axios
-        .post("/api/event_users", params)
+        .get("/api/events")
         .then((response) => {
-          this.$router.push("/event_users");
+          console.log(response.data);
+          this.events = response.data;
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
     },
+    dateCreated: function(date) {
+      return moment(date).format("LL");
+    },
+
+    createEventUsers: function(event) {
+      var params = {
+        event_id: event.id,
+      };
+      axios.post("/api/event_users", params).then((response) => {
+        this.event.attendees.push(response.data.user);
+        this.event.attending = true;
+        this.event.openings--;
+      });
+    },
+    // destroyEventUser: function(event) {
+    //   var params = {
+    //     event_id: event.id,
+    //   };
+    //   axios.delete(`/api/event_users/${this.eventId}`).then((response) => {
+    //     this.event.attending = false;
+    //     var user = this.event.attendees.find(
+    //       (user) => user.id === response.data.user_id
+    //     );
+    //     var index = this.event.attendees.indexOf(user);
+    //     this.event.attendees.splice(index, 1);
+    //     this.event.openings++;
+    //   });
+    // },
   },
 };
 </script>

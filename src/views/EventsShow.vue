@@ -4,6 +4,10 @@
 
     <h2>{{ event.title }}</h2>
     <br />
+    <div v-for="tag in event.tags">
+      <p>Tags: {{ tag.name }}</p>
+    </div>
+    <br />
     <button v-if="event.attending" v-on:click="destroyEventUser()">
       Unattend
     </button>
