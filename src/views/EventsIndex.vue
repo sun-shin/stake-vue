@@ -28,6 +28,7 @@
       <p>Event ID: {{ event.id }}</p>
       <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
       <p>Event Start: {{ formatDate(event.event_start) }}</p>
+      <p>Event End: {{ eventEnd(event) }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
@@ -64,6 +65,13 @@ export default {
     },
     dateCreated: function(date) {
       return moment(date).format("LLL");
+    },
+    eventEnd: function(event) {
+      var eventStart = event.event_start;
+      var calculatedEventEnd = moment(eventStart)
+        .add(event.duration, "hours")
+        .format("LLL");
+      return calculatedEventEnd;
     },
 
     createEventUser: function(event) {
