@@ -21,18 +21,18 @@
         <p>{{ tag.name }}</p>
       </div>
       <br />
-      <!-- <button v-if="event.attending" v-on:click="destroyEventUser(event)">
+      <button v-if="event.attending" v-on:click="destroyEventUser(event)">
         Unattend
-      </button> -->
-      <button v-on:click="createEventUsers(event)">Attend</button>
+      </button>
+      <button v-else v-on:click="createEventUser(event)">Attend</button>
       <p>Event ID: {{ event.id }}</p>
-      <!-- update backend view to return full name -->
       <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
       <p>Event Start: {{ formatDate(event.event_start) }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
       <p>Date Created: {{ dateCreated(event.created_at) }}</p>
+      <p>Openings: {{ event.openings }}</p>
     </div>
   </div>
 </template>
@@ -57,44 +57,39 @@ export default {
   },
   methods: {
     indexEvents: function() {
-      axios
-        .get("/api/events")
-        .then((response) => {
-          console.log(response.data);
-          this.events = response.data;
-        })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
-        });
+      axios.get("/api/events").then((response) => {
+        console.log(response.data);
+        this.events = response.data;
+      });
     },
     dateCreated: function(date) {
-      return moment(date).format("LL");
+      return moment(date).format("LLL");
     },
 
-    createEventUsers: function(event) {
+    createEventUser: function(event) {
       var params = {
         event_id: event.id,
       };
       axios.post("/api/event_users", params).then((response) => {
-        this.event.attendees.push(response.data.user);
-        this.event.attending = true;
-        this.event.openings--;
+        event.attendees.push(response.data.user);
+        event.attending = true;
+        event.openings--;
       });
     },
-    // destroyEventUser: function(event) {
-    //   var params = {
-    //     event_id: event.id,
-    //   };
-    //   axios.delete(`/api/event_users/${this.eventId}`).then((response) => {
-    //     this.event.attending = false;
-    //     var user = this.event.attendees.find(
-    //       (user) => user.id === response.data.user_id
-    //     );
-    //     var index = this.event.attendees.indexOf(user);
-    //     this.event.attendees.splice(index, 1);
-    //     this.event.openings++;
-    //   });
-    // },
+    destroyEventUser: function(event) {
+      var params = {
+        event_id: event.id,
+      };
+      axios.delete(`/api/event_users/${event.id}`).then((response) => {
+        event.attending = false;
+        var user = event.attendees.find(
+          (user) => user.id === response.data.user_id
+        );
+        var index = event.attendees.indexOf(user);
+        event.attendees.splice(index, 1);
+        event.openings++;
+      });
+    },
     formatDate: function(date) {
       return moment(date).format("LLL");
     },

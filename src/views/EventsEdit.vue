@@ -10,7 +10,7 @@
         <label>Title:</label>
         <input type="text" class="form-control" v-model="event.title" />
       </div>
-      <!-- <input type="hidden" id="timezone" name="timezone" value="00:00" /> -->
+
       <div class="form-group">
         <label for="event-time">Event Start:</label>
         <input

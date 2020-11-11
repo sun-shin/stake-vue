@@ -25,7 +25,7 @@
       <p>Event Start: {{ formatDate(event.event_start) }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>{{ event.tags }}</p>
-      <p>Future Event?: {{ futureEvent(event.event_start) }}</p>
+      <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
     </div>
 
     <h2>My Events</h2>
@@ -65,7 +65,7 @@ export default {
       return today < eventStart;
     },
     formatDate: function(date) {
-      return moment(date).format("LL");
+      return moment(date).format("LLL");
     },
   },
 };
