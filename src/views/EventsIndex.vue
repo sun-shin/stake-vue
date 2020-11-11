@@ -11,7 +11,7 @@
         filterBy(events, eventSearch, 'title', 'description'),
         'event_start'
       )"
-      v-if="futureEvent(event.event_start) == true"
+      v-if="futureEvent(event.event_start) == true && event.openings != 0"
     >
       <router-link :to="`/events/${event.id}`">
         <h2>{{ event.title }}</h2>

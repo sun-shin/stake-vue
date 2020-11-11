@@ -8,6 +8,15 @@
 
     <p>Phone Number: {{ user.phone_number }}</p>
 
+    Hours Completed:
+    <!-- <div
+      v-for="event in user.attending_events"
+      v-if="futureEvent(event.event_start) == false"
+    >
+      <p>{{ hoursCompleted(event) }}</p>
+    </div> -->
+    <br />
+
     <router-link
       v-if="user.id == $parent.getUserId()"
       :to="`/users/${user.id}/edit`"
@@ -33,8 +42,7 @@
       <router-link :to="`/events/${event.id}`">
         <h3>{{ event.title }}</h3>
       </router-link>
-      <p>Event Start: {{ $parent.formatDate(event.event_start) }}</p>
-      <p>Duration: {{ event.duration }}</p>
+      <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
     </div>
     <br />
   </div>
@@ -64,6 +72,12 @@ export default {
       var eventStart = moment(eventDate).format();
       return today < eventStart;
     },
+    // hoursCompleted: function(event) {
+    //   var completedHours = 0;
+    //   completedHours += event.duration;
+
+    //   return completedHours;
+    // },
   },
 };
 </script>
