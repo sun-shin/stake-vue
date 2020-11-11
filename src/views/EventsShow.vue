@@ -15,7 +15,9 @@
 
     <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
     <br />
-    <p>Event Start: {{ formatDate(event.event_start) }}</p>
+    <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
+    <br />
+    <p>End Time: {{ $parent.eventEnd(event) }}</p>
     <br />
     <p>Address: {{ event.address }}</p>
     <br />
@@ -91,9 +93,6 @@ export default {
         // increases openings by one when the user unattends
         this.event.openings++;
       });
-    },
-    formatDate: function(date) {
-      return moment(date).format("LLL");
     },
     destroyEvent: function() {
       axios.delete(`/api/events/${this.event.id}`).then((response) => {

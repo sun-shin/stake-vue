@@ -15,18 +15,18 @@
         <input type="text" class="form-control" v-model="address" />
       </div>
       <div class="form-group">
-        <label for="event-time">Event Start:</label>
+        <label for="event-time">Start Time:</label>
         <input
           type="datetime-local"
           id="event-time"
           min="2020-01-01T00:00"
           max="2021-12-31T11:59"
           class="form-control"
-          v-model="eventStart"
+          v-model="formattedEventStart"
         />
       </div>
       <div class="form-group">
-        <label>Duration:</label>
+        <label>Duration(In Hours):</label>
         <input type="text" class="form-control" v-model="duration" />
       </div>
       <div class="form-group">
@@ -59,12 +59,14 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   data: function() {
     return {
       title: "",
       createdBy: "",
-      eventStart: "",
+      // eventStart: "",
+      formattedEventStart: "",
       duration: "",
       address: "",
       attendeeLimit: "",
@@ -85,7 +87,7 @@ export default {
       var params = {
         title: this.title,
         created_by: this.createdBy,
-        event_start: this.eventStart,
+        event_start: this.formatDate(this.formattedEventStart),
         duration: this.duration,
         address: this.address,
         attendee_limit: this.attendeeLimit,
@@ -96,10 +98,16 @@ export default {
         .post("/api/events", params)
         .then((response) => {
           this.$router.push("/events");
+          this.formattedEventStart = this.formatDate(
+            this.event.event_start
+          ).substring(0, 19);
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
         });
+    },
+    formatDate: function(date) {
+      return moment(date).format();
     },
   },
 };

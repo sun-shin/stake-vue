@@ -27,13 +27,13 @@
       <button v-else v-on:click="createEventUser(event)">Attend</button>
       <p>Event ID: {{ event.id }}</p>
       <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
-      <p>Event Start: {{ formatDate(event.event_start) }}</p>
-      <p>Event End: {{ eventEnd(event) }}</p>
+      <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
+      <p>End Time: {{ $parent.eventEnd(event) }}</p>
       <p>Duration: {{ event.duration }}</p>
       <p>Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
-      <p>Date Created: {{ dateCreated(event.created_at) }}</p>
       <p>Openings: {{ event.openings }}</p>
+      <i>Date Created: {{ dateCreated(event.created_at) }}</i>
     </div>
   </div>
 </template>
@@ -66,13 +66,6 @@ export default {
     dateCreated: function(date) {
       return moment(date).format("LLL");
     },
-    eventEnd: function(event) {
-      var eventStart = event.event_start;
-      var calculatedEventEnd = moment(eventStart)
-        .add(event.duration, "hours")
-        .format("LLL");
-      return calculatedEventEnd;
-    },
 
     createEventUser: function(event) {
       var params = {
@@ -97,9 +90,6 @@ export default {
         event.attendees.splice(index, 1);
         event.openings++;
       });
-    },
-    formatDate: function(date) {
-      return moment(date).format("LLL");
     },
     futureEvent: function(eventDate) {
       var today = moment().format();

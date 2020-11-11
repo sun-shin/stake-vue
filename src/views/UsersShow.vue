@@ -22,8 +22,8 @@
       <router-link :to="`/events/${event.id}`">
         <h3>{{ event.title }}</h3>
       </router-link>
-      <p>Event Start: {{ formatDate(event.event_start) }}</p>
-      <p>Duration: {{ event.duration }}</p>
+      <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
+      <p>End Time: {{ $parent.eventEnd(event) }}</p>
       <p>{{ event.tags }}</p>
       <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
     </div>
@@ -33,7 +33,7 @@
       <router-link :to="`/events/${event.id}`">
         <h3>{{ event.title }}</h3>
       </router-link>
-      <p>Event Start: {{ formatDate(event.event_start) }}</p>
+      <p>Event Start: {{ $parent.formatDate(event.event_start) }}</p>
       <p>Duration: {{ event.duration }}</p>
     </div>
     <br />
@@ -63,9 +63,6 @@ export default {
       var today = moment().format();
       var eventStart = moment(eventDate).format();
       return today < eventStart;
-    },
-    formatDate: function(date) {
-      return moment(date).format("LLL");
     },
   },
 };

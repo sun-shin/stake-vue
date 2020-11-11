@@ -12,7 +12,7 @@
       </div>
 
       <div class="form-group">
-        <label for="event-time">Event Start:</label>
+        <label for="event-time">Start Time:</label>
         <input
           type="datetime-local"
           id="event-time"

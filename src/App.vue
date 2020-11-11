@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   data: function() {
     return {};
@@ -36,6 +37,16 @@ export default {
     },
     getUserId: function() {
       return localStorage.getItem("user_id");
+    },
+    formatDate: function(date) {
+      return moment(date).format("LLL");
+    },
+    eventEnd: function(event) {
+      var eventStart = event.event_start;
+      var calculatedEventEnd = moment(eventStart)
+        .add(event.duration, "hours")
+        .format("LLL");
+      return calculatedEventEnd;
     },
   },
 };
