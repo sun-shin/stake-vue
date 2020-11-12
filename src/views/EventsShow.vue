@@ -38,18 +38,27 @@
       >Edit</router-link
     >
     <br />
+    <div id="map"></div>
   </div>
 </template>
 
-<style></style>
+<style>
+#map {
+  width: 50vw;
+  height: 50vh;
+}
+</style>
 
 <script>
 import axios from "axios";
 import moment from "moment";
+import mapboxgl from "mapbox-gl";
 export default {
   data: function() {
     return {
-      event: {},
+      event: {
+        host: {},
+      },
     };
   },
   created: function() {
@@ -57,6 +66,15 @@ export default {
     axios.get(`/api/events/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.event = response.data;
+    });
+  },
+  mounted: function() {
+    mapboxgl.accessToken = process.env.VUE_APP_MAP_BOX_KEY;
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9, // starting zoom
     });
   },
   methods: {

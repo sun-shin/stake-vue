@@ -2,8 +2,8 @@
   <div class="home">
     <h1>{{ message }}</h1>
     <p>
-      Stake was made with the desire to build and empower communitities through
-      volunteering.
+      Stake was made with the desire to build and empower Chicago communitities
+      through volunteering.
     </p>
   </div>
 </template>
