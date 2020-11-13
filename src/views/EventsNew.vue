@@ -11,7 +11,7 @@
         <input type="text" class="form-control" v-model="title" />
       </div>
       <div class="form-group">
-        <label>Address:</label>
+        <label>Street Address:</label>
         <input type="text" class="form-control" v-model="address" />
       </div>
       <div class="form-group">
@@ -65,7 +65,6 @@ export default {
     return {
       title: "",
       createdBy: "",
-      // eventStart: "",
       formattedEventStart: "",
       duration: "",
       address: "",

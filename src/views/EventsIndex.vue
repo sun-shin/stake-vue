@@ -30,10 +30,10 @@
       <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
       <p>End Time: {{ $parent.eventEnd(event) }}</p>
       <p>Duration: {{ event.duration }}</p>
-      <p>Address: {{ event.address }}</p>
+      <p>Street Address: {{ event.address }}</p>
       <p>Description: {{ event.description }}</p>
       <p>Openings: {{ event.openings }}</p>
-      <i>Date Created: {{ dateCreated(event.created_at) }}</i>
+      <i>Date Posted: {{ dateCreated(event.created_at) }}</i>
     </div>
   </div>
 </template>

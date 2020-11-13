@@ -36,6 +36,8 @@
       <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
     </div>
 
+    <!-- <div v-on:click="showPastEvents()"></div> -->
+
     <h2>My Events</h2>
     <div
       v-for="event in user.events"
@@ -90,6 +92,9 @@ export default {
       });
       return completedHours;
     },
+    // showPastEvents: function() {
+    //   if()
+    // },
   },
 };
 </script>

@@ -19,7 +19,7 @@
     <br />
     <p>End Time: {{ $parent.eventEnd(event) }}</p>
     <br />
-    <p>Address: {{ event.address }}</p>
+    <p>Street Address: {{ event.address }}</p>
     <br />
     <p>Description: {{ event.description }}</p>
     <br />
@@ -27,10 +27,11 @@
     <br />
     <p>Openings: {{ event.openings }}</p>
     <br />
-    <h3>Attendees</h3>
+
+    <!-- <h3>Attendees</h3>
     <div v-for="attendee in event.attendees">
       <p>Name: {{ attendee.first_name }} {{ attendee.last_name }}</p>
-    </div>
+    </div> -->
     <br />
     <router-link
       v-if="event.user_id == $parent.getUserId()"
@@ -39,7 +40,7 @@
     >
     <br />
     <div id="map">
-      {{ locateAddress(event.address + ", Chicago") }}
+      <!-- {{ locateAddress(event.address + ", Chicago") }} -->
     </div>
   </div>
 </template>
@@ -56,7 +57,7 @@ import axios from "axios";
 import moment from "moment";
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
-import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
+
 export default {
   data: function() {
     return {
@@ -75,43 +76,25 @@ export default {
   },
   mounted: function() {
     this.locateAddress();
-    //   const map = new mapboxgl.Map({
-    //     container: "map",
-    //     style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
-    //     center: [-87.6, 41.8], // starting position [lng, lat]
-    //     zoom: 9, // starting zoom
-    //   });
-    //   var marker = new mapboxgl.Marker().setLngLat([-87.6, 41.8]).addTo(map);
   },
   methods: {
     locateAddress: function(address) {
       mapboxgl.accessToken = process.env.VUE_APP_MAP_BOX_KEY;
-      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
-      mapboxClient.geocoding
-        .forwardGeocode({
-          query: address,
-          autocomplete: false,
-          limit: 1,
-        })
-        .send()
-        .then(function(response) {
-          if (
-            response &&
-            response.body &&
-            response.body.features &&
-            response.body.features.length
-          ) {
-            var feature = response.body.features[0];
+      var map = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [-87.62, 41.87],
+        zoom: 11,
+      });
 
-            var map = new mapboxgl.Map({
-              container: "map",
-              style: "mapbox://styles/mapbox/streets-v11",
-              center: feature.center,
-              zoom: 12,
-            });
-            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
-          }
-        });
+      var marker = new mapboxgl.Marker().setLngLat([-87.62, 41.87]).addTo(map);
+
+      map.addControl(
+        new MapboxDirections({
+          accessToken: mapboxgl.accessToken,
+        }),
+        "top-left"
+      );
     },
     createEventUser: function() {
       var params = {
