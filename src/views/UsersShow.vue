@@ -2,7 +2,7 @@
   <div class="users-show">
     <h1>{{ user.first_name }} {{ user.last_name }}</h1>
     <div v-if="hoursCompleted() >= 100">
-      <img src="/images/HammerIcon.png" width="4%" height="3%" />
+      <img src="/images/HandIcon.png" id="icon" />
     </div>
     <img :src="user.image" />
     <br />
@@ -50,7 +50,12 @@
   </div>
 </template>
 
-<style></style>
+<style>
+#icon {
+  width: 3%;
+  height: 3%;
+}
+</style>
 
 <script>
 import axios from "axios";
