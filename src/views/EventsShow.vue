@@ -38,7 +38,9 @@
       >Edit</router-link
     >
     <br />
-    <div id="map"></div>
+    <div id="map">
+      {{ locateAddress(event.address + ", Chicago") }}
+    </div>
   </div>
 </template>
 
@@ -53,12 +55,15 @@
 import axios from "axios";
 import moment from "moment";
 import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 export default {
   data: function() {
     return {
       event: {
         host: {},
       },
+      address: "",
     };
   },
   created: function() {
@@ -69,15 +74,45 @@ export default {
     });
   },
   mounted: function() {
-    mapboxgl.accessToken = process.env.VUE_APP_MAP_BOX_KEY;
-    const map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
-      center: [-74.5, 40], // starting position [lng, lat]
-      zoom: 9, // starting zoom
-    });
+    this.locateAddress();
+    //   const map = new mapboxgl.Map({
+    //     container: "map",
+    //     style: "mapbox://styles/mapbox/streets-v11", // stylesheet location
+    //     center: [-87.6, 41.8], // starting position [lng, lat]
+    //     zoom: 9, // starting zoom
+    //   });
+    //   var marker = new mapboxgl.Marker().setLngLat([-87.6, 41.8]).addTo(map);
   },
   methods: {
+    locateAddress: function(address) {
+      mapboxgl.accessToken = process.env.VUE_APP_MAP_BOX_KEY;
+      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
+      mapboxClient.geocoding
+        .forwardGeocode({
+          query: address,
+          autocomplete: false,
+          limit: 1,
+        })
+        .send()
+        .then(function(response) {
+          if (
+            response &&
+            response.body &&
+            response.body.features &&
+            response.body.features.length
+          ) {
+            var feature = response.body.features[0];
+
+            var map = new mapboxgl.Map({
+              container: "map",
+              style: "mapbox://styles/mapbox/streets-v11",
+              center: feature.center,
+              zoom: 12,
+            });
+            new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+          }
+        });
+    },
     createEventUser: function() {
       var params = {
         event_id: this.event.id,

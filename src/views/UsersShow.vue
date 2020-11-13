@@ -1,6 +1,9 @@
 <template>
   <div class="users-show">
     <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <div v-if="hoursCompleted() >= 100">
+      <img src="/images/HammerIcon.png" width="4%" height="3%" />
+    </div>
     <img :src="user.image" />
     <br />
     <h2>Contact Information</h2>
@@ -9,12 +12,8 @@
     <p>Phone Number: {{ user.phone_number }}</p>
 
     Hours Completed:
-    <!-- <div
-      v-for="event in user.attending_events"
-      v-if="futureEvent(event.event_start) == false"
-    >
-      <p>{{ hoursCompleted(event) }}</p>
-    </div> -->
+
+    <p>{{ hoursCompleted() }}</p>
     <br />
 
     <router-link
@@ -75,12 +74,17 @@ export default {
       var eventStart = moment(eventDate).format();
       return today < eventStart;
     },
-    // hoursCompleted: function(event) {
-    //   var completedHours = 0;
-    //   completedHours += event.duration;
-
-    //   return completedHours;
-    // },
+    hoursCompleted: function() {
+      var completedHours = 0;
+      var today = moment().format();
+      var eventStart = moment(event.event_start).format();
+      this.user.attending_events.forEach(function(event) {
+        if (today < eventStart === false) {
+          completedHours += event.duration;
+        }
+      });
+      return completedHours;
+    },
   },
 };
 </script>
