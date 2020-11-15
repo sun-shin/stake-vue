@@ -28,10 +28,13 @@
     <p>Openings: {{ event.openings }}</p>
     <br />
 
-    <!-- <h3>Attendees</h3>
+    <h3>Attendees</h3>
+    <!-- put in modal after installing theme -->
     <div v-for="attendee in event.attendees">
-      <p>Name: {{ attendee.first_name }} {{ attendee.last_name }}</p>
-    </div> -->
+      <router-link :to="`/users/${attendee.id}`">
+        <p>{{ attendee.first_name }} {{ attendee.last_name }}</p>
+      </router-link>
+    </div>
     <br />
     <router-link
       v-if="event.user_id == $parent.getUserId()"
