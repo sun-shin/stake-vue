@@ -1,9 +1,9 @@
 <template>
   <div class="users-show">
     <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-    <div v-if="hoursCompleted() >= 100">
+    <!-- <div v-if="hoursCompleted() >= 100">
       <img src="/images/HandIcon.png" id="icon" />
-    </div>
+    </div> -->
     <img :src="user.image" />
     <br />
     <h2>Contact Information</h2>
@@ -13,7 +13,7 @@
 
     Hours Completed:
 
-    <p>{{ hoursCompleted() }}</p>
+    <!-- <p>{{ hoursCompleted() }}</p> -->
     <br />
 
     <router-link
@@ -35,8 +35,6 @@
       <p>{{ event.tags }}</p>
       <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
     </div>
-
-    <!-- <div v-on:click="showPastEvents()"></div> -->
 
     <h2>My Events</h2>
     <div
@@ -81,19 +79,22 @@ export default {
       var eventStart = moment(eventDate).format();
       return today < eventStart;
     },
-    hoursCompleted: function() {
-      var completedHours = 0;
-      var today = moment().format();
-      var eventStart = moment(event.event_start).format();
-      this.user.attending_events.forEach(function(event) {
-        if (today < eventStart === false) {
-          completedHours += event.duration;
-        }
-      });
-      return completedHours;
-    },
-    // showPastEvents: function() {
-    //   if()
+    // hoursCompleted: function() {
+    //   var completedHours = 0;
+    //   var today = moment().format();
+    //   var eventStart = moment(event.event_start).format();
+    //   this.user.attending_events.forEach(function(event) {
+    //     if (today < eventStart === false) {
+    //       completedHours += event.duration;
+    //     }
+    //   });
+    //   return completedHours;
+    // },
+    // showPastEvents: function(event) {
+    //   var attendingEvents = this.user.attending_events;
+    //   attendingEvents.forEach((event) => {
+    //     if (this.futureEvent(event.event_start) == false)
+    //   });
     // },
   },
 };

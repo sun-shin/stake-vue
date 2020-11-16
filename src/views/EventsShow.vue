@@ -4,8 +4,9 @@
 
     <h2>{{ event.title }}</h2>
     <br />
+    Tags:
     <div v-for="tag in event.tags">
-      <p>Tags: {{ tag.name }}</p>
+      <p>{{ tag.name }}</p>
     </div>
     <br />
     <button v-if="event.attending" v-on:click="destroyEventUser()">
@@ -42,9 +43,7 @@
       >Edit</router-link
     >
     <br />
-    <div id="map">
-      <!-- {{ locateAddress(event.address + ", Chicago") }} -->
-    </div>
+    <div id="map"></div>
   </div>
 </template>
 
@@ -56,6 +55,7 @@
 </style>
 
 <script>
+/* global MapboxDirections, mapboxSdk*/
 import axios from "axios";
 import moment from "moment";
 import mapboxgl from "mapbox-gl";
@@ -67,7 +67,6 @@ export default {
       event: {
         host: {},
       },
-      address: "",
     };
   },
   created: function() {
@@ -78,11 +77,12 @@ export default {
     });
   },
   mounted: function() {
-    this.locateAddress();
+    this.setMap();
   },
   methods: {
-    locateAddress: function(address) {
+    setMap: function() {
       mapboxgl.accessToken = process.env.VUE_APP_MAP_BOX_KEY;
+      var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
       var map = new mapboxgl.Map({
         container: "map",
         style: "mapbox://styles/mapbox/streets-v11",
@@ -90,14 +90,39 @@ export default {
         zoom: 11,
       });
 
-      var marker = new mapboxgl.Marker().setLngLat([-87.62, 41.87]).addTo(map);
-
       map.addControl(
         new MapboxDirections({
           accessToken: mapboxgl.accessToken,
         }),
         "top-left"
       );
+      // //
+      // mapboxClient.geocoding
+      //   .forwardGeocode({
+      //     query: event.address,
+      //     autocomplete: false,
+      //     limit: 1,
+      //   })
+      //   .send()
+      //   .then(function(response) {
+      //     if (
+      //       response &&
+      //       response.body &&
+      //       response.body.features &&
+      //       response.body.features.length
+      //     ) {
+      //       var feature = response.body.features[0];
+      //       //
+      //       var popup = new mapboxgl.Popup({ offset: 25 }).setText(event.title);
+      //       var el = document.createElement("div");
+      //       //
+      //       el.className = "marker";
+      //       new mapboxgl.Marker()
+      //         .setLngLat(feature.center)
+      //         .setPopup(popup)
+      //         .addTo(map);
+      //     }
+      //   });
     },
     createEventUser: function() {
       var params = {

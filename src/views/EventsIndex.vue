@@ -1,14 +1,115 @@
 <template>
   <div class="events-index">
+    <!-- PAGE HEADER
+    ============================== -->
+    <div class="page__header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="page-header__title">Volunteer Events</h3>
+            <ol class="breadcrumb page-header__breadcrumb">
+              <li><a href="i/">Home</a></li>
+              <li class="active">Volunteer Events</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE CONTENT
+    ============================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-9">
+          <div class="blog__items">
+            <div
+              v-for="event in orderBy(
+                filterBy(events, eventSearch, 'title', 'description', 'tags'),
+                'event_start'
+              )"
+              v-if="futureEvent(event.event_start) == true && event.openings != 0"
+            >
+              <div class="blog__item">
+              <img
+                src="img/general_2.jpg"
+                alt="..."
+                class="img-responsive blog__img hidden-xs"
+              />
+              <div class="blog__content">
+                <h3 class="blog__title">
+                  <router-link :to="`/events/${event.id}`">
+                    {{ event.title }}
+                  </router-link>
+                </h3>
+                <ul class="blog__info">
+                  <li><time datetime="2015-01-29">January 29, 2015</time></li>
+                  <li><a href="#">Bootstrap</a></li>
+                  <li>
+                    <a href="#"><i class="fa fa-comments-o"></i> 4</a>
+                  </li>
+                </ul>
+                <div class="blog__body">
+                  Nam ultrices, orci sit amet dignissim dignissim, tellus elit
+                  consequat dui, eu venenatis urna nisi non est. Aliquam egestas
+                  pulvinar ornare. Aenean et vulputate lacus. Ut eget purus ut
+                  ante imperdiet feugiat quis vel elit. Donec imperdiet enim
+                  quis risus porttitor congue. Vestibulum vel tristique urna.
+                  Pellentesque nulla leo, laoreet sed luctus eu, dapibus id
+                  lorem. Pellentesque eu tincidunt odio. Proin imperdiet
+                  bibendum mauris, ut bibendum odio mollis id.
+                </div>
+              </div>
+              </div>
+            </div>
+            
+            <!-- / .blog__item -->
+          </div>
+          <!-- / .blog__items -->
+          <!-- Pager -->
+          <ul class="pager pull-right">
+            <li class="disabled"><a href="#">Previous</a></li>
+            <li><a href="#">Next</a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="col-sm-4 col-md-3">
+          <!-- Categories -->
+          <h3 class="header header_plain">Categories</h3>
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+              <span class="badge">14</span> Bootstrap
+            </a>
+            <a href="#" class="list-group-item">
+              <span class="badge">17</span> Coding
+            </a>
+            <a href="#" class="list-group-item">
+              <span class="badge">22</span> Design
+            </a>
+            <a href="#" class="list-group-item">
+              <span class="badge">8</span> Graphics
+            </a>
+            <a href="#" class="list-group-item">
+              <span class="badge">21</span> Mobile
+            </a>
+            <a href="#" class="list-group-item">
+              <span class="badge">10</span> UX Design
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- / .row -->
+    </div>
+    <!-- / .container -->
+
     <ul>
-      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      <!-- <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
     <div>
       Search Volunteer Events: <input type="text" v-model="eventSearch" />
     </div>
     <div
       v-for="event in orderBy(
-        filterBy(events, eventSearch, 'title', 'description'),
+        filterBy(events, eventSearch, 'title', 'description', 'tags'),
         'event_start'
       )"
       v-if="futureEvent(event.event_start) == true && event.openings != 0"
@@ -34,7 +135,7 @@
       <p>Description: {{ event.description }}</p>
       <p>Openings: {{ event.openings }}</p>
       <i>Date Posted: {{ dateCreated(event.created_at) }}</i>
-    </div>
+    </div> -->
   </div>
 </template>
 
