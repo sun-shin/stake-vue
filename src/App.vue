@@ -13,7 +13,7 @@
             <router-link to="/signup">Signup</router-link>
           </li>
           <li v-if="loggedIn()">
-            <router-link to="/logout">Logout</router-link>
+            <router-link to="/logout">Sign Out</router-link>
           </li>
         </ul>
       </div>
@@ -49,7 +49,9 @@
             <li><router-link to="/events">Volunteer Events</router-link></li>
             <li><router-link to="/events/new">Create Event</router-link></li>
             <li v-if="loggedIn()">
-              <router-link :to="`/users/${getUserId()}`">Profile</router-link>
+              <router-link :to="`/users/${getUserId()}`"
+                >My Profile</router-link
+              >
             </li>
           </ul>
         </div>

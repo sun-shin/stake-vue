@@ -22,46 +22,42 @@
       <div class="row">
         <div class="col-sm-8 col-md-9">
           <div class="blog__items">
-            <div
-              v-for="event in orderBy(
-                filterBy(events, eventSearch, 'title', 'description', 'tags'),
-                'event_start'
-              )"
-              v-if="futureEvent(event.event_start) == true && event.openings != 0"
-            >
-              <div class="blog__item">
-              <img
-                src="img/general_2.jpg"
-                alt="..."
-                class="img-responsive blog__img hidden-xs"
-              />
-              <div class="blog__content">
-                <h3 class="blog__title">
-                  <router-link :to="`/events/${event.id}`">
-                    {{ event.title }}
-                  </router-link>
-                </h3>
-                <ul class="blog__info">
-                  <li><time datetime="2015-01-29">January 29, 2015</time></li>
-                  <li><a href="#">Bootstrap</a></li>
-                  <li>
-                    <a href="#"><i class="fa fa-comments-o"></i> 4</a>
-                  </li>
-                </ul>
-                <div class="blog__body">
-                  Nam ultrices, orci sit amet dignissim dignissim, tellus elit
-                  consequat dui, eu venenatis urna nisi non est. Aliquam egestas
-                  pulvinar ornare. Aenean et vulputate lacus. Ut eget purus ut
-                  ante imperdiet feugiat quis vel elit. Donec imperdiet enim
-                  quis risus porttitor congue. Vestibulum vel tristique urna.
-                  Pellentesque nulla leo, laoreet sed luctus eu, dapibus id
-                  lorem. Pellentesque eu tincidunt odio. Proin imperdiet
-                  bibendum mauris, ut bibendum odio mollis id.
-                </div>
-              </div>
+            <!-- Pause -->
+            <div class="blog__item" v-for="event in orderBy(
+              filterBy(events, eventSearch, 'title', 'description', 'tags'),
+              'event_start'
+            )"
+            v-if="futureEvent(event.event_start) == true && event.openings != 0">
+            <img
+              src="img/general_2.jpg"
+              alt="..."
+              class="img-responsive blog__img hidden-xs"
+            />
+            <div class="blog__content">
+              <h3 class="blog__title">
+                <router-link :to="`/events/${event.id}`">
+                  {{ event.title }}
+                </router-link>
+              </h3>
+              <ul class="blog__info">
+                <li><time datetime="2015-01-29">January 29, 2015</time></li>
+                <li><a href="#">Bootstrap</a></li>
+                <li>
+                  <a href="#"><i class="fa fa-comments-o"></i> 4</a>
+                </li>
+              </ul>
+              <div class="blog__body">
+                Nam ultrices, orci sit amet dignissim dignissim, tellus elit
+                consequat dui, eu venenatis urna nisi non est. Aliquam egestas
+                pulvinar ornare. Aenean et vulputate lacus. Ut eget purus ut
+                ante imperdiet feugiat quis vel elit. Donec imperdiet enim
+                quis risus porttitor congue. Vestibulum vel tristique urna.
+                Pellentesque nulla leo, laoreet sed luctus eu, dapibus id
+                lorem. Pellentesque eu tincidunt odio. Proin imperdiet
+                bibendum mauris, ut bibendum odio mollis id.
               </div>
             </div>
-            
+            </div>
             <!-- / .blog__item -->
           </div>
           <!-- / .blog__items -->
