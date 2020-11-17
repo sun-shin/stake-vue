@@ -9,14 +9,16 @@
             <div class="container">
               <div class="row" id="hero__content">
                 <div class="col-sm-12 text-center">
-                  <h1 class="hero__h1">Create Beautiful Websites</h1>
+                  <h1 class="hero__h1">Welcome to Stake Chicago</h1>
                   <h2 class="hero__h2">Easily With Beatrix</h2>
                   <p class="hero__intro">
                     Stake was made with the desire to build and empower Chicago
                     communities through volunteering.
                   </p>
                   <div class="hero__action">
-                    <a href="#" class="btn btn-lg btn-primary">Purchase now</a>
+                    <a href="/signup" class="btn btn-lg btn-primary"
+                      >Volunteer Now</a
+                    >
                   </div>
                 </div>
               </div>
