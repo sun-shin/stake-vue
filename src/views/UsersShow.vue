@@ -21,6 +21,9 @@
               <h3 class="profile__name">
                 {{ user.first_name }} {{ user.last_name }}
               </h3>
+              <div v-if="hoursCompleted() >= 100">
+                <img src="/images/HandIcon.png" id="icon" />
+              </div>
               <!-- User status -->
               <p class="text-muted">
                 <!-- user bio? -->
@@ -64,6 +67,15 @@
             </li>
             <li role="presentation">
               <a
+                href="#my-events"
+                aria-controls="my-events"
+                role="tab"
+                data-toggle="tab"
+                >My Events</a
+              >
+            </li>
+            <li role="presentation">
+              <a
                 href="#attending-events"
                 aria-controls="attending-events"
                 role="tab"
@@ -100,26 +112,46 @@
                       <th scope="row">Hours Completed</th>
                       <td>{{ hoursCompleted() }}</td>
                     </tr>
-                    <tr>
-                      <th scope="row">My Events</th>
-                      <!-- <td>{{ user.phone_number }}</td> -->
-                      <!-- <div
-                        v-for="event in user.events"
-                        v-if="futureEvent(event.event_start) == true"
-                      >
-                        <router-link :to="`/events/${event.id}`">
-                          <h3>{{ event.title }}</h3>
-                        </router-link>
-                        <p>
-                          Start Time:
-                          {{ $parent.formatDate(event.event_start) }}
-                        </p>
-                      </div> -->
-                    </tr>
                   </tbody>
                 </table>
               </div>
               <!-- / .table-responsive -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="my-events">
+              <h3 class="header header_plain">My Events</h3>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div v-for="event in user.events">
+                    <div class="portfolio__item">
+                      <!-- Image -->
+                      <!-- <div class="portfolio__img">
+                        <a href="portfolio-item.html">
+                          <img src="img/general_1.jpg" alt="Portfolio Image" />
+                        </a>
+                      </div> -->
+                      <!-- Captions -->
+                      <div class="portfolio__caption">
+                        <h3 class="portfolio__title">
+                          <router-link :to="`/events/${event.id}`">
+                            <h3>{{ event.title }}</h3>
+                          </router-link>
+                        </h3>
+                        <div class="portfolio__intro">
+                          <p>{{ event.tags }}</p>
+                          <p>
+                            Start Time:
+                            {{ $parent.formatDate(event.event_start) }}
+                          </p>
+                          <p>End Time: {{ $parent.eventEnd(event) }}</p>
+                        </div>
+                        <p>{{ event.tags }}</p>
+                      </div>
+                    </div>
+
+                    <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
+                  </div>
+                </div>
+              </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="attending-events">
               <h3 class="header header_plain">Attending Events</h3>
@@ -131,11 +163,11 @@
                   >
                     <div class="portfolio__item">
                       <!-- Image -->
-                      <div class="portfolio__img">
+                      <!-- <div class="portfolio__img">
                         <a href="portfolio-item.html">
                           <img src="img/general_1.jpg" alt="Portfolio Image" />
                         </a>
-                      </div>
+                      </div> -->
                       <!-- Captions -->
                       <div class="portfolio__caption">
                         <h3 class="portfolio__title">
@@ -207,11 +239,15 @@
       <!-- / .row -->
     </div>
     <!-- / .container -->
-
-    <h2>My Events</h2>
-    <br />
   </div>
 </template>
+
+<style>
+#icon {
+  width: 2.5%;
+  height: 2.5%;
+}
+</style>
 
 <style>
 #icon {

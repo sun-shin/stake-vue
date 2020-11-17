@@ -28,6 +28,13 @@
                 <h3 class="blog__title">
                   {{ event.title }}
                 </h3>
+                <router-link
+                  v-if="event.user_id == $parent.getUserId()"
+                  :to="`/events/${event.id}/edit`"
+                >
+                  Edit
+                </router-link>
+                <br />
                 <ul class="blog__info">
                   <li>
                     <time datetime="2015-01-30"
@@ -69,7 +76,9 @@
                   <br />
                   <p>Openings: {{ event.openings }}</p>
                   <br />
-                  <h3>Attendees</h3>
+
+                  <button>View Attendees</button>
+                  <br />
                   <!-- put in modal after installing theme -->
                   <div v-for="attendee in event.attendees">
                     <router-link :to="`/users/${attendee.id}`">
@@ -77,12 +86,7 @@
                     </router-link>
                   </div>
                   <br />
-                  <router-link
-                    v-if="event.user_id == $parent.getUserId()"
-                    :to="`/events/${event.id}/edit`"
-                    >Edit</router-link
-                  >
-                  <br />
+                  <!-- Mapbox -->
                   <div id="map"></div>
                 </div>
               </div>

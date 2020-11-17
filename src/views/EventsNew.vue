@@ -1,59 +1,58 @@
 <template>
   <div class="events-new">
-    <h1>Create New Event</h1>
+    <div class="container">
+      <h1>Create New Event</h1>
+      <form v-on:submit.prevent="createEvent()">
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" class="form-control" v-model="title" />
+        </div>
+        <div class="form-group">
+          <label>Street Address (Must Be In Chicago):</label>
+          <input type="text" class="form-control" v-model="address" />
+        </div>
+        <div class="form-group">
+          <label for="event-time">Start Time:</label>
+          <input
+            type="datetime-local"
+            id="event-time"
+            min="2020-01-01T00:00"
+            max="2021-12-31T11:59"
+            class="form-control"
+            v-model="formattedEventStart"
+          />
+        </div>
+        <div class="form-group">
+          <label>Duration(In Hours):</label>
+          <input type="text" class="form-control" v-model="duration" />
+        </div>
+        <div class="form-group">
+          <label>Attendee Limit:</label>
+          <input type="number" class="form-control" v-model="attendeeLimit" />
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <input type="text" class="form-control" v-model="description" />
+        </div>
 
-    <form v-on:submit.prevent="createEvent()">
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>Title:</label>
-        <input type="text" class="form-control" v-model="title" />
-      </div>
-      <div class="form-group">
-        <label>Street Address:</label>
-        <input type="text" class="form-control" v-model="address" />
-      </div>
-      <div class="form-group">
-        <label for="event-time">Start Time:</label>
-        <input
-          type="datetime-local"
-          id="event-time"
-          min="2020-01-01T00:00"
-          max="2021-12-31T11:59"
-          class="form-control"
-          v-model="formattedEventStart"
-        />
-      </div>
-      <div class="form-group">
-        <label>Duration(In Hours):</label>
-        <input type="text" class="form-control" v-model="duration" />
-      </div>
-      <div class="form-group">
-        <label>Attendee Limit:</label>
-        <input type="number" class="form-control" v-model="attendeeLimit" />
-      </div>
-      <div class="form-group">
-        <label>Description:</label>
-        <input type="text" class="form-control" v-model="description" />
-      </div>
+        <div v-for="tag in tags">
+          <input
+            type="checkbox"
+            :id="tag.id"
+            :value="tag.id"
+            v-model="checkedTagIds"
+          />
+          <label :for="tag.id">{{ tag.name }}</label>
+        </div>
+        <br />
 
-      <div v-for="tag in tags">
-        <input
-          type="checkbox"
-          :id="tag.id"
-          :value="tag.id"
-          v-model="checkedTagIds"
-        />
-        <label :for="tag.id">{{ tag.name }}</label>
-      </div>
-
+        <input type="submit" class="btn btn-primary" value="Submit" />
+      </form>
       <br />
-      <span>Checked tag ids: {{ checkedTagIds }}</span
-      ><br />
-
-      <input type="submit" class="btn btn-primary" value="Submit" />
-    </form>
+    </div>
   </div>
 </template>
 

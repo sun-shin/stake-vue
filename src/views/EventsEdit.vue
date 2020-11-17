@@ -1,69 +1,71 @@
 <template>
   <div class="events-edit">
-    <h1>Edit Event</h1>
+    <div class="container">
+      <h1>Edit Event</h1>
+      <button
+        class="btn btn-danger"
+        style="float:right;"
+        v-if="event.user_id == $parent.getUserId()"
+        v-on:click="destroyEvent()"
+      >
+        Delete Event</button
+      ><br />
+      <form v-on:submit.prevent="updateEvent()">
+        <ul>
+          <li class="text-danger" v-for="error in errors">{{ error }}</li>
+        </ul>
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" class="form-control" v-model="event.title" />
+        </div>
 
-    <form v-on:submit.prevent="updateEvent()">
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>Title:</label>
-        <input type="text" class="form-control" v-model="event.title" />
-      </div>
+        <div class="form-group">
+          <label for="event-time">Start Time:</label>
+          <input
+            type="datetime-local"
+            id="event-time"
+            min="2020-01-01T00:00"
+            max="2021-12-31T11:59"
+            class="form-control"
+            v-model="formattedEventStart"
+          />
+        </div>
+        <div class="form-group">
+          <label>Duration:</label>
+          <input type="number" class="form-control" v-model="event.duration" />
+        </div>
+        <div class="form-group">
+          <label>Address:</label>
+          <input type="text" class="form-control" v-model="event.address" />
+        </div>
 
-      <div class="form-group">
-        <label for="event-time">Start Time:</label>
-        <input
-          type="datetime-local"
-          id="event-time"
-          min="2020-01-01T00:00"
-          max="2021-12-31T11:59"
-          class="form-control"
-          v-model="formattedEventStart"
-        />
-      </div>
-      <div class="form-group">
-        <label>Duration:</label>
-        <input type="number" class="form-control" v-model="event.duration" />
-      </div>
-      <div class="form-group">
-        <label>Address:</label>
-        <input type="text" class="form-control" v-model="event.address" />
-      </div>
+        <div class="form-group">
+          <label>Attendee Limit:</label>
+          <input
+            type="number"
+            class="form-control"
+            v-model="event.attendee_limit"
+          />
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <input type="text" class="form-control" v-model="event.description" />
+        </div>
+        <div v-for="tag in tags">
+          <input
+            type="checkbox"
+            :id="tag.id"
+            :value="tag.id"
+            v-model="checkedTagIds"
+          />
+          <label :for="tag.id">{{ tag.name }}</label>
+        </div>
 
-      <div class="form-group">
-        <label>Attendee Limit:</label>
-        <input
-          type="number"
-          class="form-control"
-          v-model="event.attendee_limit"
-        />
-      </div>
-      <div class="form-group">
-        <label>Description:</label>
-        <input type="text" class="form-control" v-model="event.description" />
-      </div>
-      <div v-for="tag in tags">
-        <input
-          type="checkbox"
-          :id="tag.id"
-          :value="tag.id"
-          v-model="checkedTagIds"
-        />
-        <label :for="tag.id">{{ tag.name }}</label>
-      </div>
-
+        <br />
+        <input type="submit" class="btn btn-primary" value="Submit" />
+      </form>
       <br />
-      <span>Checked tag ids: {{ checkedTagIds }}</span>
-      <input type="submit" class="btn btn-primary" value="Submit" />
-    </form>
-    <button
-      class="btn btn-danger"
-      v-if="event.user_id == $parent.getUserId()"
-      v-on:click="destroyEvent()"
-    >
-      Delete Event
-    </button>
+    </div>
   </div>
 </template>
 
