@@ -44,7 +44,7 @@ export default {
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("user_id", response.data.user_id);
-          this.$parent.flashMessage = "Login Successful!";
+          this.$parent.flashMessage = "Login Successful";
           this.$router.push(`/users/${this.$parent.getUserId()}`);
         })
         .catch((error) => {

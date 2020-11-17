@@ -1,10 +1,10 @@
 <template>
   <div class="users-edit">
+    <ul>
+      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+    </ul>
     <form v-on:submit.prevent="updateUser()">
       <h1>Edit User Information</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
       <div class="form-group">
         <label>First Name:</label>
         <input type="text" class="form-control" v-model="user.first_name" />
@@ -23,7 +23,12 @@
       </div>
       <div class="form-group">
         <label>Image:</label>
-        <input type="text" class="form-control" v-model="user.image" />
+        <input
+          type="file"
+          class="form-control"
+          v-on:change="setFile($event)"
+          ref="fileInput"
+        />
       </div>
       <!-- <div class="form-group">
         <label>Current Password:</label>
@@ -47,6 +52,7 @@ export default {
   data: function() {
     return {
       user: {},
+      image: "",
       errors: [],
     };
   },
@@ -57,17 +63,21 @@ export default {
     });
   },
   methods: {
+    setFile: function(event) {
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
     updateUser: function() {
-      var params = {
-        first_name: this.user.first_name,
-        last_name: this.user.last_name,
-        image: this.user.image,
-        email: this.user.email,
-        phone_number: this.user.phone_number,
-        password: this.user.password,
-      };
+      var formData = new FormData();
+      formData.append("first_name", this.user.first_name);
+      formData.append("last_name", this.user.last_name);
+      formData.append("image", this.image);
+      formData.append("email", this.user.email);
+      formData.append("phone_number", this.user.phone_number);
+      formData.append("password", this.user.password);
       axios
-        .patch(`/api/users/${this.user.id}`, params)
+        .patch(`/api/users/${this.user.id}`, formData)
         .then((response) => {
           this.$router.push(`/users/${this.user.id}`);
         })
