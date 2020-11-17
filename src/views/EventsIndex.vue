@@ -23,16 +23,15 @@
         </div>
       </div>
     </div>
-
     <!-- PAGE CONTENT
     ============================== -->
     <div class="container">
+      <ul>
+        <li class="text-danger" v-for="error in errors">{{ error }}</li>
+      </ul>
       <div class="row">
         <div class="col-sm-8 col-md-9">
           <div class="blog__items">
-            <ul>
-              <li class="text-danger" v-for="error in errors">{{ error }}</li>
-            </ul>
             <div
               class="blog__item"
               v-for="event in orderBy(
@@ -79,7 +78,6 @@
                   </p>
                   <p>Start: {{ $parent.formatDate(event.event_start) }}</p>
                   <p>End: {{ $parent.eventEnd(event) }}</p>
-                  <p>Street Address: {{ event.address }}</p>
                   <p>Description: {{ event.description }}</p>
                   <p>Openings: {{ event.openings }}</p>
                 </div>
@@ -97,7 +95,7 @@
         </div>
         <div class="col-sm-4 col-md-3">
           <!-- Categories -->
-          <h3 class="header header_plain">Categories</h3>
+          <h3 class="header header_plain">Tags</h3>
           <div class="list-group">
             <a href="#" class="list-group-item active">
               <span class="badge">14</span> Bootstrap
@@ -137,8 +135,8 @@ export default {
   data: function() {
     return {
       events: [],
-      errors: [],
       eventSearch: "",
+      errors: [],
     };
   },
   created: function() {
@@ -159,11 +157,17 @@ export default {
       var params = {
         event_id: event.id,
       };
-      axios.post("/api/event_users", params).then((response) => {
-        event.attendees.push(response.data.user);
-        event.attending = true;
-        event.openings--;
-      });
+      axios
+        .post("/api/event_users", params)
+        .then((response) => {
+          event.attendees.push(response.data.user);
+          event.attending = true;
+          event.openings--;
+        })
+        .catch((error) => {
+          this.errors = ["Please Login or Signup to Attend"];
+          // this.$parent.flashMessage = "Please Login or Signup to Attend";
+        });
     },
     destroyEventUser: function(event) {
       var params = {

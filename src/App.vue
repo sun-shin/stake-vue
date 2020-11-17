@@ -59,7 +59,21 @@
       </div>
       <!-- / .container -->
     </div>
-
+    <div
+      v-if="flashMessage"
+      class="alert alert-warning alert-dismissible fade show"
+      role="alert"
+    >
+      <strong>{{ flashMessage }}</strong>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <router-view />
   </div>
 </template>
@@ -68,7 +82,9 @@
 import moment from "moment";
 export default {
   data: function() {
-    return {};
+    return {
+      flashMessage: "",
+    };
   },
   created: function() {},
 
