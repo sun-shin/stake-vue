@@ -51,7 +51,7 @@
                 <ul class="blog__info">
                   <li>
                     <time datetime="2015-01-29">{{
-                      dateCreated(event.created_at)
+                      $parent.dateCreated(event.created_at)
                     }}</time>
                   </li>
                   <li v-for="tag in event.tags">
@@ -149,10 +149,6 @@ export default {
         this.events = response.data;
       });
     },
-    dateCreated: function(date) {
-      return moment(date).format("LLL");
-    },
-
     createEventUser: function(event) {
       var params = {
         event_id: event.id,

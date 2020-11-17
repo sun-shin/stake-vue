@@ -21,7 +21,6 @@
               <h3 class="profile__name">
                 {{ user.first_name }} {{ user.last_name }}
               </h3>
-
               <!-- User status -->
               <p class="text-muted">
                 <!-- user bio? -->
@@ -65,11 +64,20 @@
             </li>
             <li role="presentation">
               <a
-                href="#user-portfolio"
-                aria-controls="user-portfolio"
+                href="#attending-events"
+                aria-controls="attending-events"
                 role="tab"
                 data-toggle="tab"
                 >Attending Events</a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                href="#past-events"
+                aria-controls="past-events"
+                role="tab"
+                data-toggle="tab"
+                >Past Events</a
               >
             </li>
           </ul>
@@ -90,11 +98,11 @@
                     </tr>
                     <tr>
                       <th scope="row">Hours Completed</th>
-                      <!-- <td>{{ hoursCompleted() }}</td> -->
+                      <td>{{ hoursCompleted() }}</td>
                     </tr>
                     <tr>
                       <th scope="row">My Events</th>
-                      <td>{{ user.phone_number }}</td>
+                      <!-- <td>{{ user.phone_number }}</td> -->
                       <!-- <div
                         v-for="event in user.events"
                         v-if="futureEvent(event.event_start) == true"
@@ -113,7 +121,7 @@
               </div>
               <!-- / .table-responsive -->
             </div>
-            <div role="tabpanel" class="tab-pane" id="user-portfolio">
+            <div role="tabpanel" class="tab-pane" id="attending-events">
               <h3 class="header header_plain">Attending Events</h3>
               <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4">
@@ -152,11 +160,45 @@
                 </div>
               </div>
               <!-- / .row -->
-              <!-- <div class="row">
-                <div class="col-xs-12 text-right">
-                  <a href="#" class="btn btn-default">View Full Portfolio</a>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="past-events">
+              <h3 class="header header_plain">Past Events</h3>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                  <div
+                    v-for="event in user.attending_events"
+                    v-if="futureEvent(event.event_start) == false"
+                  >
+                    <div class="portfolio__item">
+                      <!-- Image -->
+                      <div class="portfolio__img">
+                        <a href="portfolio-item.html">
+                          <img src="img/general_1.jpg" alt="Portfolio Image" />
+                        </a>
+                      </div>
+                      <!-- Captions -->
+                      <div class="portfolio__caption">
+                        <h3 class="portfolio__title">
+                          <router-link :to="`/events/${event.id}`">
+                            <h3>{{ event.title }}</h3>
+                          </router-link>
+                        </h3>
+                        <div class="portfolio__intro">
+                          <p>{{ event.tags }}</p>
+                          <p>
+                            Start Time:
+                            {{ $parent.formatDate(event.event_start) }}
+                          </p>
+                          <p>End Time: {{ $parent.eventEnd(event) }}</p>
+                        </div>
+                        <p>{{ event.tags }}</p>
+                      </div>
+                    </div>
+
+                    <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
+                  </div>
                 </div>
-              </div> -->
+              </div>
             </div>
           </div>
           <!-- / .tab-content -->
@@ -166,24 +208,7 @@
     </div>
     <!-- / .container -->
 
-    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-    <!-- <div v-if="hoursCompleted() >= 100">
-      <img src="/images/HandIcon.png" id="icon" />
-    </div> -->
-
-    Hours Completed:
-
-    <!-- <p>{{ hoursCompleted() }}</p> -->
-    <br />
-
-    <router-link
-      v-if="user.id == $parent.getUserId()"
-      :to="`/users/${user.id}/edit`"
-      >Edit </router-link
-    ><br />
-
     <h2>My Events</h2>
-
     <br />
   </div>
 </template>
@@ -217,23 +242,17 @@ export default {
       var eventStart = moment(eventDate).format();
       return today < eventStart;
     },
-    // hoursCompleted: function() {
-    //   var completedHours = 0;
-    //   var today = moment().format();
-    //   var eventStart = moment(event.event_start).format();
-    //   this.user.attending_events.forEach(function(event) {
-    //     if (today < eventStart === false) {
-    //       completedHours += event.duration;
-    //     }
-    //   });
-    //   return completedHours;
-    // },
-    // showPastEvents: function(event) {
-    //   var attendingEvents = this.user.attending_events;
-    //   attendingEvents.forEach((event) => {
-    //     if (this.futureEvent(event.event_start) == false)
-    //   });
-    // },
+    hoursCompleted: function() {
+      var completedHours = 0;
+      var today = moment().format();
+      var eventStart = moment(event.event_start).format();
+      this.user.attending_events.forEach(function(event) {
+        if (today < eventStart === false) {
+          completedHours += event.duration;
+        }
+      });
+      return completedHours;
+    },
   },
 };
 </script>

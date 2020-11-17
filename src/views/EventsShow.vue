@@ -1,49 +1,100 @@
 <template>
   <div class="events-show">
-    <h1>Event Info</h1>
-
-    <h2>{{ event.title }}</h2>
-    <br />
-    Tags:
-    <div v-for="tag in event.tags">
-      <p>{{ tag.name }}</p>
+    <!-- PAGE HEADER
+    ============================== -->
+    <div class="page__header">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="page-header__title">Event Info</h3>
+            <ol class="breadcrumb page-header__breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li><a href="/events">Volunteer Events</a></li>
+              <li class="active">Event Info</li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
-    <br />
-    <button v-if="event.attending" v-on:click="destroyEventUser()">
-      Unattend
-    </button>
-    <button v-else v-on:click="createEventUser()">Attend</button>
 
-    <p>Created By: {{ event.host.first_name }} {{ event.host.last_name }}</p>
-    <br />
-    <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
-    <br />
-    <p>End Time: {{ $parent.eventEnd(event) }}</p>
-    <br />
-    <p>Street Address: {{ event.address }}</p>
-    <br />
-    <p>Description: {{ event.description }}</p>
-    <br />
-    <p>Attendee Limit: {{ event.attendee_limit }}</p>
-    <br />
-    <p>Openings: {{ event.openings }}</p>
-    <br />
-
-    <h3>Attendees</h3>
-    <!-- put in modal after installing theme -->
-    <div v-for="attendee in event.attendees">
-      <router-link :to="`/users/${attendee.id}`">
-        <p>{{ attendee.first_name }} {{ attendee.last_name }}</p>
-      </router-link>
+    <!-- PAGE CONTENT
+    ============================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 col-md-9">
+          <div class="blog__items">
+            <div class="blog__item">
+              <div class="blog__content">
+                <h3 class="blog__title">
+                  {{ event.title }}
+                </h3>
+                <ul class="blog__info">
+                  <li>
+                    <time datetime="2015-01-30"
+                      >Posted: {{ $parent.dateCreated(event.created_at) }}</time
+                    >
+                  </li>
+                  <li v-for="tag in event.tags">
+                    <div>
+                      <p>{{ tag.name }}</p>
+                    </div>
+                  </li>
+                  <li>
+                    <button
+                      v-if="event.attending"
+                      v-on:click="destroyEventUser(event)"
+                    >
+                      Unattend
+                    </button>
+                    <button v-else v-on:click="createEventUser(event)">
+                      Attend
+                    </button>
+                  </li>
+                </ul>
+                <div class="blog__body">
+                  <p>
+                    Created By: {{ event.host.first_name }}
+                    {{ event.host.last_name }}
+                  </p>
+                  <br />
+                  <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
+                  <br />
+                  <p>End Time: {{ $parent.eventEnd(event) }}</p>
+                  <br />
+                  <p>Street Address: {{ event.address }}</p>
+                  <br />
+                  <p>Description: {{ event.description }}</p>
+                  <br />
+                  <p>Attendee Limit: {{ event.attendee_limit }}</p>
+                  <br />
+                  <p>Openings: {{ event.openings }}</p>
+                  <br />
+                  <h3>Attendees</h3>
+                  <!-- put in modal after installing theme -->
+                  <div v-for="attendee in event.attendees">
+                    <router-link :to="`/users/${attendee.id}`">
+                      <p>{{ attendee.first_name }} {{ attendee.last_name }}</p>
+                    </router-link>
+                  </div>
+                  <br />
+                  <router-link
+                    v-if="event.user_id == $parent.getUserId()"
+                    :to="`/events/${event.id}/edit`"
+                    >Edit</router-link
+                  >
+                  <br />
+                  <div id="map"></div>
+                </div>
+              </div>
+            </div>
+            <!-- / .blog__item -->
+          </div>
+          <!-- / .blog__items -->
+        </div>
+      </div>
+      <!-- / .row -->
     </div>
-    <br />
-    <router-link
-      v-if="event.user_id == $parent.getUserId()"
-      :to="`/events/${event.id}/edit`"
-      >Edit</router-link
-    >
-    <br />
-    <div id="map"></div>
+    <!-- / .container -->
   </div>
 </template>
 
