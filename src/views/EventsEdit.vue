@@ -31,11 +31,11 @@
           />
         </div>
         <div class="form-group">
-          <label>Duration:</label>
+          <label>Duration (Hours):</label>
           <input type="number" class="form-control" v-model="event.duration" />
         </div>
         <div class="form-group">
-          <label>Address:</label>
+          <label>Street Address (Must be In Chicago):</label>
           <input type="text" class="form-control" v-model="event.address" />
         </div>
 

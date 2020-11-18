@@ -54,11 +54,6 @@
                       $parent.dateCreated(event.created_at)
                     }}</time>
                   </li>
-                  <li v-for="tag in event.tags">
-                    <div>
-                      <p>{{ tag.name }}</p>
-                    </div>
-                  </li>
                   <li>
                     <button
                       v-if="event.attending"
@@ -80,6 +75,12 @@
                   <p>End: {{ $parent.eventEnd(event) }}</p>
                   <p>Description: {{ event.description }}</p>
                   <p>Openings: {{ event.openings }}</p>
+
+                  <div v-for="tag in event.tags" id="tags">
+                    <span class="label label-pill label-warning">{{
+                      tag.name
+                    }}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,7 +125,12 @@
   </div>
 </template>
 
-<style></style>
+<style>
+#tags {
+  display: inline;
+  padding: 2.5px;
+}
+</style>
 
 <script>
 import axios from "axios";

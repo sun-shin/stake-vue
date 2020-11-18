@@ -10,7 +10,7 @@
               <div class="row" id="hero__content">
                 <div class="col-sm-12 text-center">
                   <h1 class="hero__h1">Welcome to Stake Chicago</h1>
-                  <h2 class="hero__h2">Volunteer Platform for Chicagoans</h2>
+                  <h2 class="hero__h2">Volunteer Platform for Chicago</h2>
                   <p class="hero__intro">
                     Stake was made with the desire to build and empower Chicago
                     communities through volunteering.
@@ -57,7 +57,7 @@
         <div class="row">
           <div class="col-xs-12">
             <h1 class="section__title">
-              Our Core Features
+              Why Volunteer?
             </h1>
             <p class="section__intro">
               Beatrix is a super flexible HTML5 template that would perfectly
@@ -68,18 +68,18 @@
         </div>
         <!-- / .row -->
         <div class="row">
-          <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-12 col-sm-3">
             <!-- Features item #1 -->
             <div class="features__item">
               <!-- Icon -->
               <div class="features__icon wow flipInY">
-                <i class="fa fa-check"></i>
-                <i class="fa fa-check"></i>
+                <i class="fas fa-seedling"></i>
+                <i class="fas fa-seedling"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
               <h2 class="features__title">
-                Truly Responsive
+                Growth
               </h2>
               <!-- Intro -->
               <p class="features__intro">
@@ -88,7 +88,7 @@
               </p>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-12 col-sm-3">
             <!-- Features item #2 -->
             <div class="features__item">
               <!-- Icon -->
@@ -99,7 +99,7 @@
               </div>
               <!-- Title -->
               <h2 class="features__title">
-                Built with LESS
+                Health
               </h2>
               <!-- Intro -->
               <p class="features__intro">
@@ -108,7 +108,7 @@
               </p>
             </div>
           </div>
-          <div class="col-xs-12 col-sm-4">
+          <div class="col-xs-12 col-sm-3">
             <!-- Features item #3 -->
             <div class="features__item">
               <!-- Icon -->
@@ -119,7 +119,27 @@
               </div>
               <!-- Title -->
               <h2 class="features__title">
-                PHP Contact Form
+                Connections
+              </h2>
+              <!-- Intro -->
+              <p class="features__intro">
+                Beatrix comes with a fully functional PHP contact form with
+                built in spam protection powered by reCaptcha.
+              </p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-3">
+            <!-- Features item #3 -->
+            <div class="features__item">
+              <!-- Icon -->
+              <div class="features__icon wow flipInY" data-wow-delay=".4s">
+                <i class="fa fa-envelope"></i>
+                <i class="fa fa-envelope"></i>
+                <!-- Required for animation -->
+              </div>
+              <!-- Title -->
+              <h2 class="features__title">
+                Career
               </h2>
               <!-- Intro -->
               <p class="features__intro">

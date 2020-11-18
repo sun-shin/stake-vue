@@ -109,7 +109,7 @@
             <hr />
             <p>
               Already a member?
-              <a href="/login">Sign into your account.</a>
+              <router-link to="/login">Sign into your account.</router-link>
             </p>
           </div>
           <!-- / .body-plain__form -->

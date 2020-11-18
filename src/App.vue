@@ -256,7 +256,7 @@ export default {
       return localStorage.getItem("user_id");
     },
     formatDate: function(date) {
-      return moment(date).format("LL");
+      return moment(date).format("LLL");
     },
     eventEnd: function(event) {
       var eventStart = event.event_start;
@@ -266,7 +266,7 @@ export default {
       return calculatedEventEnd;
     },
     dateCreated: function(date) {
-      return moment(date).format("LLL");
+      return moment(date).format("LL");
     },
   },
 };

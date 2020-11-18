@@ -60,7 +60,10 @@
 
             <!-- Sign Up link -->
             <hr />
-            <p>Not registered? <a href="/signup">Create an Account.</a></p>
+            <p>
+              Not registered?
+              <router-link to="/signup">Create an Account.</router-link>
+            </p>
           </div>
           <!-- / .body-plain__form -->
         </div>

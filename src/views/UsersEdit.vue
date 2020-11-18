@@ -34,10 +34,10 @@
         <label>Current Password:</label>
         <input type="text" class="form-control" v-model="user.password" />
       </div> -->
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label>New Password:</label>
         <input type="text" class="form-control" v-model="user.password" />
-      </div>
+      </div> -->
       <input type="submit" class="btn btn-primary" value="Update" />
     </form>
     <button class="btn btn-danger" v-on:click="destroyMovie()">Delete</button>
@@ -72,10 +72,12 @@ export default {
       var formData = new FormData();
       formData.append("first_name", this.user.first_name);
       formData.append("last_name", this.user.last_name);
-      formData.append("image", this.image);
+      if (this.image) {
+        formData.append("image", this.user.image);
+      }
       formData.append("email", this.user.email);
       formData.append("phone_number", this.user.phone_number);
-      formData.append("password", this.user.password);
+      // formData.append("password", this.user.password);
       axios
         .patch(`/api/users/${this.user.id}`, formData)
         .then((response) => {
