@@ -22,7 +22,7 @@
                 {{ user.first_name }} {{ user.last_name }}
               </h3>
               <div v-if="hoursCompleted() >= 100">
-                <img src="/images/HandIcon.png" id="icon" />
+                <img src="/img/HandIcon.png" id="icon" />
               </div>
               <!-- User status -->
               <p class="text-muted">

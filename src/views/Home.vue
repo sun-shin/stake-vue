@@ -9,15 +9,17 @@
             <div class="container">
               <div class="row" id="hero__content">
                 <div class="col-sm-12 text-center">
-                  <h1 class="hero__h1">Welcome to Stake Chicago</h1>
-                  <h2 class="hero__h2">Volunteer Platform for Chicago</h2>
-                  <p class="hero__intro">
+                  <h1 class="hero__h1" id="text">Welcome to Stake Chicago</h1>
+                  <h2 class="hero__h2" id="text">
+                    Volunteer Platform for Chicago
+                  </h2>
+                  <p class="hero__intro" id="text">
                     Stake was made with the desire to build and empower Chicago
                     communities through volunteering.
                   </p>
                   <div class="hero__action">
                     <a href="/signup" class="btn btn-lg btn-primary"
-                      >Volunteer Now</a
+                      >Start Volunteering</a
                     >
                   </div>
                 </div>
@@ -56,8 +58,8 @@
             <div class="features__item">
               <!-- Icon -->
               <div class="features__icon wow flipInY">
-                <i class="fas fa-seedling"></i>
-                <i class="fas fa-seedling"></i>
+                <i class="fa fa-leaf"></i>
+                <i class="fa fa-leaf"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
@@ -76,8 +78,8 @@
             <div class="features__item">
               <!-- Icon -->
               <div class="features__icon wow flipInY" data-wow-delay=".2s">
-                <i class="fa fa-birthday-cake"></i>
-                <i class="fa fa-birthday-cake"></i>
+                <i class="fa fa-heartbeat"></i>
+                <i class="fa fa-heartbeat"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
@@ -96,8 +98,8 @@
             <div class="features__item">
               <!-- Icon -->
               <div class="features__icon wow flipInY" data-wow-delay=".4s">
-                <i class="fa fa-envelope"></i>
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-group"></i>
+                <i class="fa fa-group"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
@@ -116,8 +118,8 @@
             <div class="features__item">
               <!-- Icon -->
               <div class="features__icon wow flipInY" data-wow-delay=".4s">
-                <i class="fa fa-envelope"></i>
-                <i class="fa fa-envelope"></i>
+                <i class="fa fa-briefcase"></i>
+                <i class="fa fa-briefcase"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
@@ -140,7 +142,14 @@
   </div>
 </template>
 
-<style></style>
+<style>
+/* #wrapper {
+  opacity: 0.5;
+} */
+#text {
+  text-shadow: 2px 2px #000000;
+}
+</style>
 
 <script>
 export default {

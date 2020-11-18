@@ -56,8 +56,8 @@
                   </li>
                   <li>
                     <p>
-                      Created By: {{ event.host.first_name }}
-                      {{ event.host.last_name }}
+                      Host: {{ event.host.first_name }}
+                      {{ event.host.last_name[0] }}.
                     </p>
                   </li>
                   <li>

@@ -32,7 +32,7 @@ $(window).load(function() {
   setTimeout(function() {
     $("#hero__content").animate(
       {
-        opacity: 10,
+        opacity: 1,
         top: 0,
       },
       800
