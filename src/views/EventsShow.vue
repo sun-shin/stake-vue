@@ -16,96 +16,147 @@
         </div>
       </div>
     </div>
-
     <!-- PAGE CONTENT
     ============================== -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 col-md-9">
-          <div class="blog__items">
-            <div class="blog__item">
-              <div class="blog__content">
-                <h3 class="blog__title">
-                  {{ event.title }}
-                </h3>
-                <router-link
-                  v-if="event.user_id == $parent.getUserId()"
-                  :to="`/events/${event.id}/edit`"
-                >
-                  Edit
-                </router-link>
-                <br />
-                <ul class="blog__info">
-                  <li>
-                    <time datetime="2015-01-30"
-                      >Posted: {{ $parent.dateCreated(event.created_at) }}</time
-                    >
-                  </li>
-                  <li v-for="tag in event.tags">
-                    <div>
-                      <p>{{ tag.name }}</p>
-                    </div>
-                  </li>
-                  <li>
-                    <button
-                      v-if="event.attending"
-                      v-on:click="destroyEventUser(event)"
-                    >
-                      Unattend
-                    </button>
-                    <button v-else v-on:click="createEventUser(event)">
-                      Attend
-                    </button>
-                  </li>
-                </ul>
-                <div class="blog__body">
-                  <p>
-                    Created By: {{ event.host.first_name }}
-                    {{ event.host.last_name }}
-                  </p>
-                  <br />
-                  <p>Start Time: {{ $parent.formatDate(event.event_start) }}</p>
-                  <br />
-                  <p>End Time: {{ $parent.eventEnd(event) }}</p>
-                  <br />
-                  <p>Street Address: {{ event.address }}</p>
-                  <br />
-                  <p>Description: {{ event.description }}</p>
-                  <br />
-                  <p>Attendee Limit: {{ event.attendee_limit }}</p>
-                  <br />
-                  <p>Openings: {{ event.openings }}</p>
-                  <br />
-
-                  <button>View Attendees</button>
-                  <br />
-                  <!-- put in modal after installing theme -->
-                  <div v-for="attendee in event.attendees">
-                    <router-link :to="`/users/${attendee.id}`">
-                      <p>{{ attendee.first_name }} {{ attendee.last_name }}</p>
-                    </router-link>
-                  </div>
-                  <br />
-                  <!-- Mapbox -->
-                  <div id="map"></div>
-                </div>
-              </div>
-            </div>
-            <!-- / .blog__item -->
+        <div class="col-sm-8">
+          <div class="portfolio-item__img">
+            <!-- Mapbox -->
+            <div id="map"></div>
           </div>
-          <!-- / .blog__items -->
+        </div>
+        <div class="col-sm-4">
+          <h3 class="header">
+            {{ event.title }}
+            <router-link
+              class="float-right"
+              v-if="event.user_id == $parent.getUserId()"
+              :to="`/events/${event.id}/edit`"
+            >
+              <i class="fa fa-pencil"></i>
+            </router-link>
+            <p class="text-muted" id="posted">
+              Posted {{ $parent.dateCreated(event.created_at) }}
+            </p>
+          </h3>
+          <p class="text-muted">
+            {{ event.description }}
+          </p>
+          <h3 class="header header_plain">Event Details</h3>
+          <div class="table-responsive">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Host</th>
+                  <td>{{ event.host.first_name }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Start Time</th>
+                  <td>{{ $parent.formatDate(event.event_start) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">End Time</th>
+                  <td>{{ $parent.eventEnd(event) }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Location</th>
+                  <td>{{ event.address }}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Attendee Slots</th>
+                  <td>{{ event.openings }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button
+            class="btn btn-primary btn-lg"
+            v-if="event.attending"
+            v-on:click="destroyEventUser(event)"
+          >
+            Unattend
+          </button>
+          <button
+            class="btn btn-primary btn-lg"
+            v-else
+            v-on:click="createEventUser(event)"
+          >
+            Attend
+          </button>
+          <!-- / .table-responsive -->
         </div>
       </div>
       <!-- / .row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h3 class="header">Attendees</h3>
+
+          <!-- Portfolio Carousel -->
+          <div
+            id="portfolio__carousel"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <!-- Controls -->
+            <div class="portfolio-carousel__controls">
+              <a href="#portfolio__carousel" role="button" data-slide="prev">
+                <i class="fa fa-long-arrow-left"></i>
+              </a>
+              <a href="#portfolio__carousel" role="button" data-slide="next">
+                <i class="fa fa-long-arrow-right"></i>
+              </a>
+            </div>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+              <!-- Slide #1 -->
+              <div class="item active">
+                <div class="row">
+                  <div
+                    v-for="attendee in event.attendees"
+                    class="col-xs-6 col-sm-6 col-md-3"
+                  >
+                    <!-- Portfolio Item #1 -->
+                    <div class="portfolio__item">
+                      <!-- Image -->
+                      <div class="portfolio__img">
+                        <a href="#">
+                          <img :src="attendee.image" alt="Portfolio Image" />
+                        </a>
+                      </div>
+                      <!-- Captions -->
+                      <div class="portfolio__caption">
+                        <h3 class="portfolio__title">
+                          {{ attendee.first_name }} {{ attendee.last_name[0] }}.
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- / .row -->
+              </div>
+              <!-- / .item -->
+            </div>
+            <!-- / .carousel-inner -->
+          </div>
+          <!-- / .carousel -->
+        </div>
+      </div>
     </div>
+    <br />
     <!-- / .container -->
   </div>
 </template>
 
 <style>
 #map {
-  width: 50vw;
-  height: 50vh;
+  width: inherit;
+  height: 500px;
+}
+#posted {
+  float: right;
+  font-weight: normal;
 }
 </style>
 

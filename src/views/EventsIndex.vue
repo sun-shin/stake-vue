@@ -55,6 +55,12 @@
                     }}</time>
                   </li>
                   <li>
+                    <p>
+                      Created By: {{ event.host.first_name }}
+                      {{ event.host.last_name }}
+                    </p>
+                  </li>
+                  <li>
                     <button
                       v-if="event.attending"
                       v-on:click="destroyEventUser(event)"
@@ -67,10 +73,6 @@
                   </li>
                 </ul>
                 <div class="blog__body">
-                  <p>
-                    Created By: {{ event.host.first_name }}
-                    {{ event.host.last_name }}
-                  </p>
                   <p>Start: {{ $parent.formatDate(event.event_start) }}</p>
                   <p>End: {{ $parent.eventEnd(event) }}</p>
                   <p>Description: {{ event.description }}</p>

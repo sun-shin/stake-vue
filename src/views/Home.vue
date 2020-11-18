@@ -31,23 +31,6 @@
         <!-- / .wrapper -->
       </div>
       <!-- / .hero__inner -->
-
-      <!-- Backstretch controls -->
-      <div class="hero__ctrl js-hero-bs__ctrl">
-        <a href="#hero__carousel" role="button" data-slide="prev">
-          <i class="fa fa-step-backward"></i>
-        </a>
-        <a href="#" data-slide="pause" class="visible-inline-block playback">
-          <i class="fa fa-pause"></i>
-        </a>
-        <a href="#" data-slide="resume" class="playback hidden">
-          <i class="fa fa-play"></i>
-        </a>
-        <a href="#hero__carousel" role="button" data-slide="next">
-          <i class="fa fa-step-forward"></i>
-        </a>
-      </div>
-      <!-- / .hero__ctrl -->
     </div>
     <!-- / .hero -->
     <!-- KEY FEATURES
