@@ -11,11 +11,11 @@
                 <div class="col-sm-12 text-center">
                   <h1 class="hero__h1" id="text">Welcome to Stake Chicago</h1>
                   <h2 class="hero__h2" id="text">
-                    Volunteer Platform for Chicago
+                    Volunteer Platform for the City of Chicago
                   </h2>
                   <p class="hero__intro" id="text">
                     Stake was made with the desire to build and empower Chicago
-                    communities through volunteering.
+                    communities through the act of volunteering.
                   </p>
                   <div class="hero__action">
                     <a href="/signup" class="btn btn-lg btn-primary"
@@ -45,8 +45,10 @@
               Why Volunteer?
             </h1>
             <p class="section__intro">
-              Beatrix is a super flexible HTML5 template that would perfectly
-              fit a project of any size and complexity
+              The collective and individual benefits of volunteering can be
+              enormous, offering vital help for worthwhile causes, building
+              solidarity between groups of people, as well as endless
+              opportunities and benefits for the individual.
             </p>
             <div class="section__hr section__hr_center"></div>
           </div>
@@ -108,8 +110,7 @@
               </h2>
               <!-- Intro -->
               <p class="features__intro">
-                Beatrix comes with a fully functional PHP contact form with
-                built in spam protection powered by reCaptcha.
+                The collective and individual benefits of volunteering are .
               </p>
             </div>
           </div>
@@ -139,6 +140,76 @@
       <!-- / .container -->
     </div>
     <!-- / .section -->
+    <!-- Volunteer Quotes
+    ============================== -->
+    <div class="section section_feedback">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="feedback__icon wow zoomIn">
+              <i class="fa fa-quote-right"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <div
+              id="feedback__carousel"
+              class="carousel slide"
+              data-ride="carousel"
+            >
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" role="listbox">
+                <!-- First item -->
+                <div class="item active">
+                  <div class="feedback__item">
+                    <div class="feedback__content">
+                      We make a living by what we get, but we make a life by
+                      what we give.
+                    </div>
+                    <div class="feedback__author">- Winston Churchill -</div>
+                  </div>
+                </div>
+                <!-- Second item -->
+                <div class="item">
+                  <div class="feedback__item">
+                    <div class="feedback__content">
+                      The best way to find yourself is in the service of others.
+                    </div>
+                    <div class="feedback__author">- Gandhi -</div>
+                  </div>
+                </div>
+                <!-- Third item -->
+                <div class="item">
+                  <div class="feedback__item">
+                    <div class="feedback__content">
+                      Never doubt that a small group of thoughtful, committed
+                      citizens can change the world; indeed, it’s the only thing
+                      that ever has.
+                    </div>
+                    <div class="feedback__author">- Margaret Mead -</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li
+                  data-target="#feedback__carousel"
+                  data-slide-to="0"
+                  class="active"
+                ></li>
+                <li data-target="#feedback__carousel" data-slide-to="1"></li>
+                <li data-target="#feedback__carousel" data-slide-to="2"></li>
+              </ol>
+            </div>
+            <!-- / .feedback__carousel -->
+          </div>
+        </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </div>
   </div>
 </template>
 

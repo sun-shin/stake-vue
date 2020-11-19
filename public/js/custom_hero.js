@@ -20,13 +20,10 @@ Last change:    14/06/2016
 
 $(window).load(function() {
   // starts after the page is fully loaded
-  $(".hero__bs").backstretch(
-    ["img/bg_1.jpeg", "img/bg_2.jpeg", "img/bg_3.jpeg"],
-    {
-      duration: 5000,
-      fade: 500,
-    }
-  );
+  $(".hero__bs").backstretch(["img/bg_1.png", "img/bg_2.png", "img/bg_3.png"], {
+    duration: 5000,
+    fade: 500,
+  });
 
   // Hero content animation
   setTimeout(function() {
