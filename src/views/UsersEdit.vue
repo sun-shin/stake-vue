@@ -83,6 +83,9 @@ export default {
       if (confirm("Are you sure you want to delete this account?")) {
         axios.delete(`/api/users/${this.user.id}`).then((response) => {
           console.log("Account Successfully Deleted", response.data);
+          delete axios.defaults.headers.common["Authorization"];
+          localStorage.removeItem("jwt");
+          localStorage.removeItem("user_id");
           this.$router.push("/login");
         });
       }

@@ -47,7 +47,9 @@
             <!-- UI Elements -->
             <li><a href="/">Home</a></li>
             <li><router-link to="/events">Volunteer Events</router-link></li>
-            <li><router-link to="/events/new">Create Event</router-link></li>
+            <li v-if="loggedIn()">
+              <router-link to="/events/new">Create Event</router-link>
+            </li>
             <li v-if="loggedIn()">
               <router-link :to="`/users/${getUserId()}`"
                 >My Profile</router-link
