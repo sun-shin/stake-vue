@@ -59,19 +59,19 @@
             <!-- Features item #1 -->
             <div class="features__item">
               <!-- Icon -->
-              <div class="features__icon wow flipInY">
-                <i class="fa fa-leaf"></i>
-                <i class="fa fa-leaf"></i>
+              <div class="features__icon wow flipInY" data-wow-delay=".4s">
+                <i class="fa fa-group"></i>
+                <i class="fa fa-group"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
               <h2 class="features__title">
-                Growth
+                Connections
               </h2>
               <!-- Intro -->
               <p class="features__intro">
-                Looks equally great on your laptop, tablet, and phone. Try to
-                resize your window to see what we mean.
+                Form bonds with members of your community or strangers that have
+                similar values. Bonds that can ultimately be life-changing.
               </p>
             </div>
           </div>
@@ -86,12 +86,13 @@
               </div>
               <!-- Title -->
               <h2 class="features__title">
-                Health
+                Health & Well-Being
               </h2>
               <!-- Intro -->
               <p class="features__intro">
-                Build on the source LESS code or quickly get started with
-                precompiled CSS if you are a novice developer.
+                Studies show that volunteering helps people stay physically and
+                mentally active, promoting longer life as well. Notably reduces
+                stress levels and risk of depression
               </p>
             </div>
           </div>
@@ -99,23 +100,26 @@
             <!-- Features item #3 -->
             <div class="features__item">
               <!-- Icon -->
-              <div class="features__icon wow flipInY" data-wow-delay=".4s">
-                <i class="fa fa-group"></i>
-                <i class="fa fa-group"></i>
+              <div class="features__icon wow flipInY">
+                <i class="fa fa-leaf"></i>
+                <i class="fa fa-leaf"></i>
                 <!-- Required for animation -->
               </div>
               <!-- Title -->
               <h2 class="features__title">
-                Connections
+                Growth
               </h2>
               <!-- Intro -->
               <p class="features__intro">
-                The collective and individual benefits of volunteering are .
+                Learn new skills from hands-on experiences and continue to
+                develop old ones. Consider the endless amounts of knowledge you
+                may gain from interaction, building compassion and understanding
+                with each individual you meet.
               </p>
             </div>
           </div>
           <div class="col-xs-12 col-sm-3">
-            <!-- Features item #3 -->
+            <!-- Features item #4 -->
             <div class="features__item">
               <!-- Icon -->
               <div class="features__icon wow flipInY" data-wow-delay=".4s">
@@ -129,8 +133,10 @@
               </h2>
               <!-- Intro -->
               <p class="features__intro">
-                Beatrix comes with a fully functional PHP contact form with
-                built in spam protection powered by reCaptcha.
+                Allows individuals to try different things, possibility
+                narrowing down the search for a future career or determine
+                career goals, a natural networking opportunity, and looks great
+                on a resume!
               </p>
             </div>
           </div>
