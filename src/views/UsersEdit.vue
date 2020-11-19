@@ -32,7 +32,7 @@
       </div>
       <input type="submit" class="btn btn-primary" value="Update" />
     </form>
-    <button class="btn btn-danger" v-on:click="destroyMovie()">Delete</button>
+    <button class="btn btn-danger" v-on:click="destroyUser()">Delete</button>
   </div>
 </template>
 
@@ -79,11 +79,11 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    destroyMovie: function() {
+    destroyUser: function() {
       if (confirm("Are you sure you want to delete this account?")) {
         axios.delete(`/api/users/${this.user.id}`).then((response) => {
           console.log("Account Successfully Deleted", response.data);
-          this.$router.push("/users");
+          this.$router.push("/login");
         });
       }
     },

@@ -39,6 +39,10 @@
             <p class="text-muted" id="posted">
               Posted {{ $parent.dateCreated(event.created_at) }}
             </p>
+
+            <div v-for="tag in event.tags" id="tags">
+              <span class="label label-pill label-warning">{{ tag.name }}</span>
+            </div>
           </h3>
           <p class="text-muted">
             {{ event.description }}
@@ -128,7 +132,10 @@
                       <!-- Captions -->
                       <div class="portfolio__caption">
                         <h3 class="portfolio__title">
-                          {{ attendee.first_name }} {{ attendee.last_name[0] }}.
+                          <router-link :to="`/users/${attendee.id}`"
+                            >{{ attendee.first_name }}
+                            {{ attendee.last_name[0] }}.</router-link
+                          >
                         </h3>
                       </div>
                     </div>

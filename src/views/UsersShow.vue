@@ -120,8 +120,8 @@
             <div role="tabpanel" class="tab-pane" id="my-events">
               <h3 class="header header_plain">My Events</h3>
               <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div v-for="event in user.events">
+                <div v-for="event in user.events">
+                  <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="portfolio__item">
                       <div class="portfolio__caption">
                         <h3 class="portfolio__title" id="my_events">
@@ -140,8 +140,6 @@
                         <p>{{ event.tags }}</p>
                       </div>
                     </div>
-
-                    <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
                   </div>
                 </div>
               </div>
@@ -149,19 +147,12 @@
             <div role="tabpanel" class="tab-pane" id="attending-events">
               <h3 class="header header_plain">Attending Events</h3>
               <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                  <div
-                    v-for="event in user.attending_events"
-                    v-if="futureEvent(event.event_start) == true"
-                  >
+                <div
+                  v-for="event in user.attending_events"
+                  v-if="futureEvent(event.event_start) == true"
+                >
+                  <div class="col-xs-12 col-sm-6 col-md-4">
                     <div class="portfolio__item">
-                      <!-- Image -->
-                      <!-- <div class="portfolio__img">
-                        <a href="portfolio-item.html">
-                          <img src="img/general_1.jpg" alt="Portfolio Image" />
-                        </a>
-                      </div> -->
-                      <!-- Captions -->
                       <div class="portfolio__caption">
                         <h3 class="portfolio__title">
                           <router-link :to="`/events/${event.id}`">
@@ -179,8 +170,6 @@
                         <p>{{ event.tags }}</p>
                       </div>
                     </div>
-
-                    <!-- <p>Future Event?: {{ futureEvent(event.event_start) }}</p> -->
                   </div>
                 </div>
               </div>

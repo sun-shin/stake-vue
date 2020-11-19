@@ -51,7 +51,7 @@
           <label>Description:</label>
           <input type="text" class="form-control" v-model="event.description" />
         </div>
-        <div v-for="tag in tags">
+        <div v-for="tag in tags" id="edit_tags">
           <input
             type="checkbox"
             :id="tag.id"
@@ -68,6 +68,14 @@
     </div>
   </div>
 </template>
+
+<style>
+#edit_tags {
+  width: 20%;
+  float: left;
+  list-style: none;
+}
+</style>
 
 <script>
 import axios from "axios";

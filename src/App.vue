@@ -67,7 +67,7 @@
         <div class="container">
           <div class="row">
             <!-- Contact Us -->
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
               <div class="footer__item">
                 <div class="footer__title">Contact Us</div>
                 <div class="footer__content">
@@ -81,44 +81,8 @@
               </div>
             </div>
 
-            <!-- Recent Posts -->
-            <div class="col-xs-12 col-sm-4">
-              <div class="footer__item">
-                <div class="footer__title">Recent Events</div>
-                <div class="footer__content">
-                  <div class="footer__post">
-                    <div class="footer-post__img">
-                      <img src="img/general_1.jpg" alt="..." />
-                    </div>
-                    <div class="footer-post__content">
-                      <p><a href="#">Lorem ipsum dolor sit amet</a></p>
-                      <time datetime="2015-01-01">2015/01/01</time>
-                    </div>
-                  </div>
-                  <div class="footer__post">
-                    <div class="footer-post__img">
-                      <img src="img/general_2.jpg" alt="..." />
-                    </div>
-                    <div class="footer-post__content">
-                      <p><a href="#">Lorem ipsum dolor sit amet</a></p>
-                      <time datetime="2015-01-01">2015/01/01</time>
-                    </div>
-                  </div>
-                  <div class="footer__post">
-                    <div class="footer-post__img">
-                      <img src="img/general_3.jpg" alt="..." />
-                    </div>
-                    <div class="footer-post__content">
-                      <p><a href="#">Lorem ipsum dolor sit amet</a></p>
-                      <time datetime="2015-01-01">2015/01/01</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <!-- Quick Links -->
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
               <div class="footer__item">
                 <div class="footer__title">Quick Links</div>
                 <div class="footer__content">

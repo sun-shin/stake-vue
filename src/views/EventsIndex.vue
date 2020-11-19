@@ -64,10 +64,15 @@
                     <button
                       v-if="event.attending"
                       v-on:click="destroyEventUser(event)"
+                      class="btn btn-primary btn-xs"
                     >
                       Unattend
                     </button>
-                    <button v-else v-on:click="createEventUser(event)">
+                    <button
+                      v-else
+                      v-on:click="createEventUser(event)"
+                      class="btn btn-primary btn-xs"
+                    >
                       Attend
                     </button>
                   </li>
@@ -98,25 +103,25 @@
         </div>
         <div class="col-sm-4 col-md-3">
           <!-- Categories -->
-          <h3 class="header header_plain">Tags</h3>
+          <h3 class="header header_plain">Event Tags</h3>
           <div class="list-group">
-            <a href="#" class="list-group-item active">
-              <span class="badge">14</span> Bootstrap
+            <a href="#" class="list-group-item">
+              <span class="badge">2</span> Community
             </a>
             <a href="#" class="list-group-item">
-              <span class="badge">17</span> Coding
+              <span class="badge">2</span> Sports
             </a>
             <a href="#" class="list-group-item">
-              <span class="badge">22</span> Design
+              <span class="badge">2</span> Health
             </a>
             <a href="#" class="list-group-item">
-              <span class="badge">8</span> Graphics
+              <span class="badge">1</span> Arts & Culture
             </a>
             <a href="#" class="list-group-item">
-              <span class="badge">21</span> Mobile
+              <span class="badge">1</span> Animals
             </a>
             <a href="#" class="list-group-item">
-              <span class="badge">10</span> UX Design
+              <span class="badge">1</span> Environment
             </a>
           </div>
         </div>

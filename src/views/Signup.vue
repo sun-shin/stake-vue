@@ -133,6 +133,7 @@ export default {
       phoneNumber: "",
       password: "",
       passwordConfirmation: "",
+      image: "",
       errors: [],
     };
   },
