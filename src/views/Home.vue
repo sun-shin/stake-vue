@@ -220,9 +220,6 @@
 </template>
 
 <style>
-/* #wrapper {
-  opacity: 0.5;
-} */
 #text {
   text-shadow: 2px 2px #000000;
 }

@@ -67,66 +67,24 @@
         <div class="container">
           <div class="row">
             <!-- Contact Us -->
-            <div class="col-xs-12 col-sm-3">
+            <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
                 <div class="footer__title">Contact Us</div>
                 <div class="footer__content">
                   <p>
                     Do not hesitate to contact us if you have any questions or
-                    feature requests:
+                    for feedback:
                   </p>
-                  <p>
-                    Lorem ipsum dolor sit amet,<br />
-                    Consectetur adipiscing elit
-                  </p>
-                  <p>
-                    Phone: +0 000 000 00 00<br />
-                    Fax: +0 000 000 00 00
-                  </p>
-                  <p>Email: <a href="#">support@example.com</a></p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Recent Tweets -->
-            <div class="col-xs-12 col-sm-3">
-              <div class="footer__item">
-                <div class="footer__title">Recent Tweets</div>
-                <div class="footer__content">
-                  <div class="footer__tweet">
-                    <div class="footer-tweet__icon">
-                      <i class="fa fa-twitter"></i>
-                    </div>
-                    <div class="footer-tweet__content">
-                      <p>
-                        <a href="#">@wrapbootstrap</a> Lorem ipsum dolor sit
-                        amet, consectetur adipiscing elit. Nunc nisi lorem,
-                        elementum sed feugiat.
-                      </p>
-                      <a href="#">1 hour ago</a>
-                    </div>
-                  </div>
-                  <div class="footer__tweet">
-                    <div class="footer-tweet__icon">
-                      <i class="fa fa-twitter"></i>
-                    </div>
-                    <div class="footer-tweet__content">
-                      <p>
-                        <a href="#">@wrapbootstrap</a> Lorem ipsum dolor sit
-                        amet, consectetur adipiscing elit. Nunc nisi lorem,
-                        elementum sed feugiat.
-                      </p>
-                      <a href="#">1 day ago</a>
-                    </div>
-                  </div>
+                  <p>Phone: (312) 000-0000<br /></p>
+                  <p>Email: <a href="#">support@stake.com</a></p>
                 </div>
               </div>
             </div>
 
             <!-- Recent Posts -->
-            <div class="col-xs-12 col-sm-3">
+            <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
-                <div class="footer__title">Recent Posts</div>
+                <div class="footer__title">Recent Events</div>
                 <div class="footer__content">
                   <div class="footer__post">
                     <div class="footer-post__img">
@@ -160,16 +118,23 @@
             </div>
 
             <!-- Quick Links -->
-            <div class="col-xs-12 col-sm-3">
+            <div class="col-xs-12 col-sm-4">
               <div class="footer__item">
                 <div class="footer__title">Quick Links</div>
                 <div class="footer__content">
                   <ul class="footer__links">
-                    <li><a href="#">Donec commodo turpis eget orci</a></li>
-                    <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="#">Aenean rhoncus vel nisi sed</a></li>
-                    <li><a href="#">Aenean accumsan volutpat libero</a></li>
-                    <li><a href="#">Vestibulum lacinia erat massa</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li>
+                      <router-link to="/events">Volunteer Events</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/events/new">Create Event</router-link>
+                    </li>
+                    <li v-if="loggedIn()">
+                      <router-link :to="`/users/${getUserId()}`"
+                        >My Profile</router-link
+                      >
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -189,7 +154,7 @@
             <div class="col-xs-12 col-sm-6">
               <div class="footer__copyright">
                 Copyright 2015
-                <a href="http://simpleqode.com/">Simpleqode.com</a>. All Rights
+                <a href="http://sun-shin.github.io">Sunhan Shin</a>. All Rights
                 Reserved.
               </div>
             </div>

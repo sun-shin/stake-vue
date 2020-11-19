@@ -19,7 +19,7 @@
             <div class="profile__summary">
               <!-- User name -->
               <h3 class="profile__name">
-                {{ user.first_name }} {{ user.last_name }}
+                {{ user.first_name }} {{ user.last_name[0] }}.
               </h3>
               <div v-if="hoursCompleted() >= 100">
                 <img src="/img/HandIcon.png" id="icon" />
@@ -123,15 +123,8 @@
                 <div class="col-xs-12 col-sm-6 col-md-4">
                   <div v-for="event in user.events">
                     <div class="portfolio__item">
-                      <!-- Image -->
-                      <!-- <div class="portfolio__img">
-                        <a href="portfolio-item.html">
-                          <img src="img/general_1.jpg" alt="Portfolio Image" />
-                        </a>
-                      </div> -->
-                      <!-- Captions -->
                       <div class="portfolio__caption">
-                        <h3 class="portfolio__title">
+                        <h3 class="portfolio__title" id="my_events">
                           <router-link :to="`/events/${event.id}`">
                             <h3>{{ event.title }}</h3>
                           </router-link>
@@ -246,13 +239,6 @@
 #icon {
   width: 2.5%;
   height: 2.5%;
-}
-</style>
-
-<style>
-#icon {
-  width: 3%;
-  height: 3%;
 }
 </style>
 

@@ -30,14 +30,6 @@
           ref="fileInput"
         />
       </div>
-      <!-- <div class="form-group">
-        <label>Current Password:</label>
-        <input type="text" class="form-control" v-model="user.password" />
-      </div> -->
-      <!-- <div class="form-group">
-        <label>New Password:</label>
-        <input type="text" class="form-control" v-model="user.password" />
-      </div> -->
       <input type="submit" class="btn btn-primary" value="Update" />
     </form>
     <button class="btn btn-danger" v-on:click="destroyMovie()">Delete</button>
@@ -73,7 +65,7 @@ export default {
       formData.append("first_name", this.user.first_name);
       formData.append("last_name", this.user.last_name);
       if (this.image) {
-        formData.append("image", this.user.image);
+        formData.append("image", this.image);
       }
       formData.append("email", this.user.email);
       formData.append("phone_number", this.user.phone_number);
