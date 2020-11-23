@@ -184,12 +184,6 @@
                     v-if="futureEvent(event.event_start) == false"
                   >
                     <div class="portfolio__item">
-                      <!-- Image -->
-                      <div class="portfolio__img">
-                        <a href="portfolio-item.html">
-                          <img src="img/general_1.jpg" alt="Portfolio Image" />
-                        </a>
-                      </div>
                       <!-- Captions -->
                       <div class="portfolio__caption">
                         <h3 class="portfolio__title">

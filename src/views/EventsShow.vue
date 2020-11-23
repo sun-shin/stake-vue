@@ -39,6 +39,7 @@
             <p class="text-muted" id="posted">
               Posted {{ $parent.dateCreated(event.created_at) }}
             </p>
+            <br />
 
             <div v-for="tag in event.tags" id="tags">
               <span class="label label-pill label-warning">{{ tag.name }}</span>
@@ -209,33 +210,6 @@ export default {
         }),
         "top-left"
       );
-      // //
-      // mapboxClient.geocoding
-      //   .forwardGeocode({
-      //     query: event.address,
-      //     autocomplete: false,
-      //     limit: 1,
-      //   })
-      //   .send()
-      //   .then(function(response) {
-      //     if (
-      //       response &&
-      //       response.body &&
-      //       response.body.features &&
-      //       response.body.features.length
-      //     ) {
-      //       var feature = response.body.features[0];
-      //       //
-      //       var popup = new mapboxgl.Popup({ offset: 25 }).setText(event.title);
-      //       var el = document.createElement("div");
-      //       //
-      //       el.className = "marker";
-      //       new mapboxgl.Marker()
-      //         .setLngLat(feature.center)
-      //         .setPopup(popup)
-      //         .addTo(map);
-      //     }
-      //   });
     },
     createEventUser: function() {
       var params = {
