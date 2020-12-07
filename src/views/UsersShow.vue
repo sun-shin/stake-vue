@@ -250,12 +250,13 @@ export default {
     hoursCompleted: function() {
       var completedHours = 0;
       var today = moment().format();
-      var eventStart = moment(event.event_start).format();
       this.user.attending_events.forEach(function(event) {
+        var eventStart = moment(event.event_start).format();
         if (today < eventStart === false) {
           completedHours += event.duration;
         }
       });
+      // return completedHours;
       return completedHours;
     },
   },
