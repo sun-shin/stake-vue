@@ -4,6 +4,11 @@
     ============================== -->
     <div class="topbar hidden-xs hidden-sm">
       <div class="container">
+        <ul class="topbar-nav topbar-nav_left">
+          <li v-if="!loggedIn()" style="color:white">
+            Visitor Login: ew@gmail.com :: password
+          </li>
+        </ul>
         <ul class="topbar-nav topbar-nav_right">
           <!-- Account links -->
           <li v-if="!loggedIn()">
